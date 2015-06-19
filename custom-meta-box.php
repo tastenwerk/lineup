@@ -4,22 +4,22 @@
 
   class CustomMetabox
   {
-    public function __construct( $box_array, $context, $id ) {
+    public function __construct( $box_array, $context, $title ) {
       $this->box_array = $box_array;
       $this->context = $context;
-      $this->id = $id;
+      $this->title = $title;
       add_action('add_meta_boxes', array( $this, 'add_custom_meta_box') );
       // add_action('save_post', array( $this, 'save_custom_meta') );
     }
 
-    public $id;
+    public $title;
     public $context = 'normal';
     public $box_array = array();
 
     public function add_custom_meta_box() {
       add_meta_box(
-        $this->id, // $id
-        'Custom Meta Box', // $title 
+        $this->title.$this->context, // $id
+        ' ', // $title 
         array( $this, 'show_custom_meta_box' ), // $callback
         $this->title, // $page
         $this->context, // $context

@@ -8,10 +8,8 @@
   {
     public function __construct() {
       $this->init_array();
-      new CustomMetabox( $this->fields_array, 'normal', '1' );
-      new CustomMetabox( $this->fields_array, 'side', '2' );
-      // add_action('add_meta_boxes', array( $this, 'add_custom_meta_box') );
-      // add_action('add_meta_boxes', array( $this, 'add_side_meta_box') );
+      new CustomMetabox( $this->fields_array, 'normal', $this->title );
+      new CustomMetabox( $this->side_array, 'side', $this->title );
       add_action('save_post', array( $this, 'save_custom_meta') );
       add_action('admin_head', array( $this, 'add_custom_scripts') );
       add_action('init', array( $this, 'create_post_type') );
