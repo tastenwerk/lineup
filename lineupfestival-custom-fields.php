@@ -12,7 +12,7 @@
           'name' => __('Lineup Festivals', $this->title), // Rename these to suit
           'singular_name' => __('HTML5 Blank Custom Post', $this->title),
           'add_new' => __('Add New', $this->title),
-          'add_new_item' => __('Add New HTML5 Blank Custom Post', $this->title),
+          'add_new_item' => __('Neues Festival', $this->title),
           'edit' => __('Edit', $this->title),
           'edit_item' => __('Edit HTML5 Blank Custom Post', $this->title),
           'new_item' => __('New HTML5 Blank Custom Post', $this->title),
@@ -40,15 +40,45 @@
     public function init_array(){
       $this->fields_array = array(
         array(
-              'label'=> 'Titel',
-              'desc'  => 'Titel der Veranstaltung',
-              'id'    => $this->title.'text',
-              'type'  => 'text'
+            'label'=> 'Bechreibung',
+            'desc'  => '',
+            'id'    => $this->title.'textarea',
+            'type'  => 'textarea'
             ),
         array(
-            'label'=> 'Untertitel',
+            'label'=> 'Email',
             'desc'  => '',
-            'id'    => $this->title.'text',
+            'id'    => $this->title.'textarea',
+            'type'  => 'text'
+            ),
+        array(
+            'label'=> 'Telefon',
+            'desc'  => '',
+            'id'    => $this->title.'textarea',
+            'type'  => 'text'
+            ),
+        array(
+            'label'=> 'Straße',
+            'desc'  => '',
+            'id'    => $this->title.'textarea',
+            'type'  => 'text'
+            ),
+        array(
+            'label'=> 'Stadt',
+            'desc'  => '',
+            'id'    => $this->title.'textarea',
+            'type'  => 'text'
+            ),
+        array(
+            'label'=> 'Bundesland',
+            'desc'  => '',
+            'id'    => $this->title.'textarea',
+            'type'  => 'text'
+            ),
+        array(
+            'label'=> 'Land',
+            'desc'  => '',
+            'id'    => $this->title.'textarea',
             'type'  => 'text'
             )
       );
