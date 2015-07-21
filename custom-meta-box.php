@@ -9,7 +9,7 @@
       $this->context = $context;
       $this->title = $title;
       add_action('add_meta_boxes', array( $this, 'add_custom_meta_box') );
-      // add_action('save_post', array( $this, 'save_custom_meta') );
+      add_action('save_post', array( $this, 'save_custom_meta') );
     }
 
     public $title;
@@ -218,7 +218,7 @@
       }
 
       // loop through fields and save the data
-      foreach ($this->fields_array as $field) {
+      foreach ($this->box_array as $field) {
         $old = get_post_meta($post_id, $field['id'], true);
         $new = $_POST[$field['id']];
         if ($new && $new != $old) {

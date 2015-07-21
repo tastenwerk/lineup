@@ -10,7 +10,7 @@
       register_post_type($this->title, // Register Custom Post Type
         array(
           'labels' => array(
-          'name' => __('Lineup Ensembles', $this->title), 
+          'name' => __('Ensembles', $this->title), 
           'singular_name' => __('HTML5 Blank Custom Post', $this->title),
           'add_new' => __('Add New', $this->title),
           'add_new_item' => __('Neues Ensemble', $this->title),

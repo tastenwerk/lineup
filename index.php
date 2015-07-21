@@ -29,14 +29,14 @@ class Plugin{
 
   public function __construct() {
 
-    new Lineupvenue();
-    new Lineupentry();
-    new Lineupevent();
+    // new Lineupvenue();
+    // new Lineupentry();
+    // new Lineupevent();
     new Lineupensemble();
-    new Lineupfestival();
+    // new Lineupfestival();
     new Lineupperson();
 
-    add_action('init', array( $this, 'people_init' ) );    
+    // add_action('init', array( $this, 'people_init' ) );    
     add_action( 'init', array( $this, 'add_js_and_css_files' ) );
 
   }
@@ -58,7 +58,7 @@ class Plugin{
       'people',
       'post',
       array(
-        'label' => __( 'Lineup Person' ),
+        'label' => __( 'Personen' ),
         'rewrite' => array( 'slug' => 'person' ),
         'capabilities' => array(
           'assign_terms' => 'edit_guides',

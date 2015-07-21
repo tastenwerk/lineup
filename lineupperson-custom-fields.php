@@ -9,12 +9,12 @@
       register_post_type($this->title, // Register Custom Post Type
         array(
           'labels' => array(
-          'name' => __('Lineup Persons', $this->title), // Rename these to suit
+          'name' => __('Personen', $this->title), // Rename these to suit
           'singular_name' => __('HTML5 Blank Custom Post', $this->title),
-          'add_new' => __('Add New', $this->title),
+          'add_new' => __('Neue Person erstellen', $this->title),
           'add_new_item' => __('Neue Person', $this->title),
           'edit' => __('Edit', $this->title),
-          'edit_item' => __('Edit HTML5 Blank Custom Post', $this->title),
+          'edit_item' => __('Person bearbeiten', $this->title),
           'new_item' => __('Neue Person', $this->title),
           'view' => __('View HTML5 Blank Custom Post', $this->title),
           'view_item' => __('View HTML5 Blank Custom Post', $this->title),
@@ -26,7 +26,7 @@
         'hierarchical' => false, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
         'supports' => array(
-          // 'title',
+          'title',
           'thumbnail'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
@@ -34,39 +34,52 @@
           'post_tag'
         ) // Add Category and Post Tags support
         ));
-
     }
     
     public function init_array(){
-      $this->fields_array = array(
+      $this->side_array = array(
         array(
-              'label'=> 'Name',
-              'desc'  => 'Vor- und Nachname',
-              'id'    => $this->title.'text',
-              'type'  => 'text'
+            'label'=> 'In Team Seite anzeigen',
+            'desc'  => '',
+            'id'    => $this->title.'_show',
+            'type'  => 'checkbox'
             ),
+        array(
+            'label'=> 'Position in Team Seite',
+            'desc'  => '',
+            'id'    => $this->title.'_show_position',
+            'type'  => 'text'
+            ),
+      );
+      $this->fields_array = array(
+        // array(
+        //       'label'=> 'Name',
+        //       'desc'  => 'Vor- und Nachname',
+        //       'id'    => $this->title.'_name',
+        //       'type'  => 'text'
+        //     ),
         array(
             'label'=> 'Funktion',
             'desc'  => '',
-            'id'    => $this->title.'text',
+            'id'    => $this->title.'_position',
             'type'  => 'text'
             ),
         array(
             'label'=> 'Bechreibung',
             'desc'  => '',
-            'id'    => $this->title.'textarea',
+            'id'    => $this->title.'_description',
             'type'  => 'textarea'
             ),
         array(
             'label'=> 'Email',
             'desc'  => '',
-            'id'    => $this->title.'textarea',
+            'id'    => $this->title.'_email',
             'type'  => 'text'
             ),
         array(
             'label'=> 'Telefon',
             'desc'  => '',
-            'id'    => $this->title.'textarea',
+            'id'    => $this->title.'_phone',
             'type'  => 'text'
             ),
         array(
@@ -92,7 +105,19 @@
             'desc'  => '',
             'id'    => $this->title.'textarea',
             'type'  => 'text'
-            )
+            ),        
+        array(
+          'label'  => 'Profilbild',
+          'desc'  => 'Profilbild der Person für die Homepage',
+          'id'    => $this->title.'_profile_pic',
+          'type'  => 'image'
+        )    
+        // array(
+        //   'label'  => 'Hintergrundbild',
+        //   'desc'  => 'Hintergrundbild der Person für die Homepage',
+        //   'id'    => $this->title.'_background_pic',
+        //   'type'  => 'image'
+        // )
       );
     }
   }
