@@ -35,8 +35,6 @@ class Plugin{
     new Lineupensemble();
     // new Lineupfestival();
     new Lineupperson();
-
-    // add_action('init', array( $this, 'people_init' ) );    
     add_action( 'init', array( $this, 'add_js_and_css_files' ) );
 
   }
@@ -52,21 +50,6 @@ class Plugin{
     }
   }
 
-  public function people_init() {
-    // create a new taxonomy
-    register_taxonomy(
-      'people',
-      'post',
-      array(
-        'label' => __( 'Personen' ),
-        'rewrite' => array( 'slug' => 'person' ),
-        'capabilities' => array(
-          'assign_terms' => 'edit_guides',
-          'edit_terms' => 'publish_guides'
-        )
-      )
-    );
-  }
 }
 
 $lineup_plugin = new Plugin();
