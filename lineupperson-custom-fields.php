@@ -3,7 +3,9 @@
   namespace Lineup;
     
   class Lineupperson extends Lineupfields {
+
     public $title = 'lineupperson';
+    
 
     public function create_post_type(){
       register_post_type($this->title, // Register Custom Post Type

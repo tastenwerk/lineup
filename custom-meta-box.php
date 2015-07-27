@@ -2,24 +2,31 @@
 
   namespace Lineup;
 
+  include 'echo-methods/main-methods.php';
+
   class CustomMetabox
   {
     public function __construct( $box_array, $context, $title ) {
+      
       $this->box_array = $box_array;
       $this->context = $context;
       $this->title = $title;
       add_action('add_meta_boxes', array( $this, 'add_custom_meta_box') );
       add_action('save_post', array( $this, 'save_custom_meta') );
+      $this->main_methods = new MainMethods();
     }
 
+    public $main_methods;
+
     public $title;
+    public $box_title = 'Erweiterte Informationen';
     public $context = 'normal';
     public $box_array = array();
 
     public function add_custom_meta_box() {
       add_meta_box(
         $this->title.$this->context, // $id
-        ' ', // $title 
+        $this->box_title, // $title 
         array( $this, 'show_custom_meta_box' ), // $callback
         $this->title, // $page
         $this->context, // $context
@@ -29,48 +36,51 @@
 
     public function show_custom_meta_box($array) {
       global $post;
+      $jump_table = $this->context == 'normal' ? false : true;
 
-
-            // Use nonce for verification
-      echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
-            // Begin the field table and loop
-      echo '<table class="form-table">';
+      if (!$jump_table){
+        echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
+        echo '<table class="form-table">';
+      }
 
       foreach ($this->box_array as $field) {
               // get value of this field if it exists for this post
         $meta = get_post_meta($post->ID, $field['id'], true);
               // begin a table row with
-        echo '<tr><th><label for="'.$field['id'].'">'.$field['label'].'</label></th><td>';
+        if (!$jump_table) echo '<tr><th>';
+        else echo '<div>';
+        echo '<label for="'.$field['id'].'">'.$field['label'].'</label>';
+        if (!$jump_table) echo '</th><td>';
         switch($field['type']) {
           case 'text':
-          $this->echo_text_field($field, $meta);
+          $this->main_methods->echo_text_field($field, $meta);
           break;
           case 'textarea':
-          $this->echo_text_area($field, $meta);
+          $this->main_methods->echo_text_area($field, $meta);
           break;
           case 'checkbox':
-          $this->echo_checkbox($field, $meta);
+          $this->main_methods->echo_checkbox($field, $meta);
           break;    
           case 'select':
-          $this->echo_select($field, $meta);
+          $this->main_methods->echo_select($field, $meta);
           break;
           case 'radio':
-          $this->echo_radio($field, $meta);
+          $this->main_methods->echo_radio($field, $meta);
           break;
           case 'checkbox_group':
-          $this->echo_checkbox_group($field, $meta);
+          $this->main_methods->echo_checkbox_group($field, $meta);
           break;
           case 'date':
-          $this->echo_date($field, $meta);
+          $this->main_methods->echo_date($field, $meta);
           break;
           case 'tax_select':
-          $this->echo_tax_select($field, $meta, $post);
+          $this->main_methods->echo_tax_select($field, $meta, $post);
           break;
           case 'slider':
-          $this->echo_slider($field, $meta);
+          $this->main_methods->echo_slider($field, $meta);
           break;
           case 'image':
-          $this->echo_image($field, $meta);
+          $this->main_methods->echo_image($field, $meta);
           break;
           case 'repeatable':
           $this->echo_repeatable($field, $meta);
@@ -85,9 +95,10 @@
           $this->echo_post_list($field, $meta);
           break;
         }
-        echo '</td></tr>';
-      } // end foreach
-      echo '</table>'; // end table
+        if (!$jump_table) echo '</td></tr>';
+        else echo '</div>';
+      } 
+      if (!$jump_table) echo '</table>'; 
     }
 
   function echo_appointments($field, $meta){
@@ -110,95 +121,6 @@
     <span class="description">'.$field['desc'].'</span>';
   }
 
-
-  function echo_post_list($field, $meta){
-    $items = get_posts( array (
-        'post_type' => $field['post_type'],
-        'posts_per_page' => -1
-    ));
-    echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
-            <option value="">Select One</option>'; // Select One
-        foreach($items as $item) {
-            echo '<option value="'.$item->ID.'"',$meta == $item->ID ? ' selected="selected"' : '','>'.$item->post_type.': '.$item->post_title.'</option>';
-        } // end foreach
-    echo '</select><br /><span class="description">'.$field['desc'].'</span>';
-  }
-
-  function echo_text_field($field, $meta){
-    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="30" />
-      <br /><span class="description">'.$field['desc'].'</span>';
-  }
-
-  function echo_text_area($field, $meta){
-    echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="60" rows="4">'.$meta.'</textarea>
-      <br /><span class="description">'.$field['desc'].'</span>';
-  }
-
-  function echo_checkbox($field, $meta){
-    echo '<input type="checkbox" name="'.$field['id'].'" id="'.$field['id'].'" ',$meta ? ' checked="checked"' : '','/>
-      <label for="'.$field['id'].'">'.$field['desc'].'</label>';
-  }
-
-  function echo_select($field, $meta){
-    echo '<select name="'.$field['id'].'" id="'.$field['id'].'">';
-    foreach ($field['options'] as $option) {
-        echo '<option', $meta == $option['value'] ? ' selected="selected"' : '', ' value="'.$option['value'].'">'.$option['label'].'</option>';
-    }
-    echo '</select><br /><span class="description">'.$field['desc'].'</span>';
-  }
-
-  function echo_radio($field, $meta){
-    foreach ( $field['options'] as $option ) {
-      echo '<input type="radio" name="'.$field['id'].'" id="'.$option['value'].'" value="'.$option['value'].'" ',$meta == $option['value'] ? ' checked="checked"' : '',' />
-        <label for="'.$option['value'].'">'.$option['label'].'</label><br />';
-    }
-  }
-
-  function echo_checkbox_group($field, $meta){
-    foreach ($field['options'] as $option) {
-      echo '<input type="checkbox" value="'.$option['value'].'" name="'.$field['id'].'[]" id="'.$option['value'].'"',$meta && in_array($option['value'], $meta) ? ' checked="checked"' : '',' /> 
-      <label for="'.$option['value'].'">'.$option['label'].'</label><br />';
-    }
-    echo '<span class="description">'.$field['desc'].'</span>';
-  }
-
-  function echo_date($field, $meta){
-    echo '<input type="text" class="datepicker" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="30" />
-      <br /><span class="description">'.$field['desc'].'</span>';   
-  }
-
-  function echo_tax_select($field, $meta, $post){
-    echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
-    <option value="">Select One</option>'; // Select One
-    $terms = get_terms($field['id'], 'get=all');
-    $selected = wp_get_object_terms($post->ID, $field['id']);
-    foreach ($terms as $term) {
-      if (!empty($selected) && !strcmp($term->slug, $selected[0]->slug)) 
-        echo '<option value="'.$term->slug.'" selected="selected">'.$term->name.'</option>'; 
-      else
-        echo '<option value="'.$term->slug.'">'.$term->name.'</option>'; 
-    }
-    $taxonomy = get_taxonomy($field['id']);
-    echo '</select><br /><span class="description"><a href="'.get_bloginfo('url').'/wp-admin/edit-tags.php?taxonomy='.$field['id'].'">Manage '.$taxonomy->label.'</a></span>';    
-  }
-
-  function echo_slider($field, $meta){
-    $value = $meta != '' ? $meta : '0';
-      echo '<div id="'.$field['id'].'-slider"></div>
-      <input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$value.'" size="5" />
-      <br /><span class="description">'.$field['desc'].'</span>';
-  }
-
-  function echo_image($field, $meta){
-      $image = get_template_directory_uri().'/images/image.png';  
-      echo '<span class="custom_default_image" style="display:none">'.$image.'</span>';
-      if ($meta) { $image = wp_get_attachment_image_src($meta, 'medium'); $image = $image[0]; }               
-      echo    '<input name="'.$field['id'].'" type="hidden" class="custom_upload_image" value="'.$meta.'" />
-                  <img src="'.$image.'" class="custom_preview_image" alt="" /><br />
-                      <input class="custom_upload_image_button button" type="button" value="Choose Image" />
-                      <small> <a href="#" class="custom_clear_image_button">Remove Image</a></small>
-                      <br clear="all" /><span class="description">'.$field['desc'].'</span>';
-    }
   function echo_repeatable($field, $meta){
     echo '<a class="repeatable-add button" href="#">+</a>
           <ul id="'.$field['id'].'-repeatable" class="custom_repeatable">';
