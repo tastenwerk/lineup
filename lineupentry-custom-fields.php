@@ -30,11 +30,11 @@
           'title',
           'editor',
           // 'excerpt',
-          'thumbnail'
+          // 'thumbnail'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
-          'post_tag',
+          // 'post_tag',
           'category'
         ) // Add Category and Post Tags support
         ));
@@ -42,28 +42,34 @@
     }
 
     public function init_array(){
-      $this->side_array = array(
+      // $this->side_array = array(
+      //    array(
+      //     'label' => 'Termin(e)',
+      //     'desc'  => 'Termin(e) der geplanten Veranstaltung',
+      //     'id'    => $this->title.'_dates',
+      //     'type'  => 'appointments'
+      //   ),
+      //   //   array(
+      //   //   'label' => 'Mitwirkende',
+      //   //   'desc'  => 'Mitwirkende der geplanten Veranstaltung',
+      //   //   'id'    => $this->title.'_persons',
+      //   //   'type'  => 'dates-repeater'
+      //   // ),
+      //   array(
+      //     'label' => 'Post List',
+      //     'desc' => 'A description for the field.',
+      //     'id'    =>  $this->title.'post_id',
+      //     'type' => 'post_list',
+      //     'post_type' => array('lineupvenue')
+      //   )
+      // );
+      $this->fields_array = array(
          array(
           'label' => 'Termin(e)',
           'desc'  => 'Termin(e) der geplanten Veranstaltung',
           'id'    => $this->title.'_dates',
           'type'  => 'appointments'
         ),
-        //   array(
-        //   'label' => 'Mitwirkende',
-        //   'desc'  => 'Mitwirkende der geplanten Veranstaltung',
-        //   'id'    => $this->title.'_persons',
-        //   'type'  => 'dates-repeater'
-        // ),
-        array(
-          'label' => 'Post List',
-          'desc' => 'A description for the field.',
-          'id'    =>  $this->title.'post_id',
-          'type' => 'post_list',
-          'post_type' => array('lineupvenue')
-        )
-      );
-      $this->fields_array = array(
         array(
             'label'=> 'Untertitel',
             'desc'  => '',

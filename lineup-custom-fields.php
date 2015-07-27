@@ -8,8 +8,10 @@
   {
     public function __construct() {
       $this->init_array();
-      new CustomMetabox( $this->fields_array, 'normal', $this->title );
-      new CustomMetabox( $this->side_array, 'side', $this->title );
+      if( sizeof( $this->fields_array ) > 0 )
+        new CustomMetabox( $this->fields_array, 'normal', $this->title );
+      if( sizeof( $this->side_array ) > 0 )
+        new CustomMetabox( $this->side_array, 'side', $this->title );
       add_action('admin_head', array( $this, 'add_custom_scripts') );
       add_action('init', array( $this, 'create_post_type') );
     }
