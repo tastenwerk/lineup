@@ -27,11 +27,13 @@
         'has_archive' => true,
         'supports' => array(
           'title',
-          'thumbnail'
+          'thumbnail',
+          'editor',
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
-          'post_tag'
+          'post_tag',
+          'category'
         ) // Add Category and Post Tags support
         ));
     }

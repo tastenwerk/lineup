@@ -29,9 +29,8 @@ class Plugin{
 
   public function __construct() {
 
-    // new Lineupvenue();
-    // new Lineupentry();
-    // new Lineupevent();
+    new Lineupvenue();
+    new Lineupentry();
     new Lineupensemble();
     // new Lineupfestival();
     new Lineupperson();

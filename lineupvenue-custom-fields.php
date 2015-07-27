@@ -10,11 +10,11 @@
         array(
           'labels' => array(
           'name' => __('Spielorte', $this->title), // Rename these to suit
-          'singular_name' => __('HTML5 Blank Custom Post', $this->title),
+          'singular_name' => __('Spielort', $this->title),
           'add_new' => __('Add New', $this->title),
           'add_new_item' => __('Neuer Spielort', $this->title),
           'edit' => __('Edit', $this->title),
-          'edit_item' => __('Edit HTML5 Blank Custom Post', $this->title),
+          'edit_item' => __('Spielort bearbeiten', $this->title),
           'new_item' => __('New HTML5 Blank Custom Post', $this->title),
           'view' => __('View HTML5 Blank Custom Post', $this->title),
           'view_item' => __('View HTML5 Blank Custom Post', $this->title),
@@ -39,12 +39,6 @@
     
     public function init_array(){
       $this->fields_array = array(
-        array(
-            'label'=> 'Bechreibung',
-            'desc'  => '',
-            'id'    => $this->title.'textarea',
-            'type'  => 'textarea'
-            ),
         array(
             'label'=> 'Email',
             'desc'  => '',

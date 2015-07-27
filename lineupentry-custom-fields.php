@@ -46,21 +46,28 @@
          array(
           'label' => 'Termin(e)',
           'desc'  => 'Termin(e) der geplanten Veranstaltung',
-          'id'    => $this->title.'repeatable',
-          'type'  => 'dates-repeater'
+          'id'    => $this->title.'_dates',
+          'type'  => 'appointments'
         ),
-          array(
-          'label' => 'Mitwirkende',
-          'desc'  => 'Mitwirkende der geplanten Veranstaltung',
-          'id'    => $this->title.'repeatable',
-          'type'  => 'dates-repeater'
+        //   array(
+        //   'label' => 'Mitwirkende',
+        //   'desc'  => 'Mitwirkende der geplanten Veranstaltung',
+        //   'id'    => $this->title.'_persons',
+        //   'type'  => 'dates-repeater'
+        // ),
+        array(
+          'label' => 'Post List',
+          'desc' => 'A description for the field.',
+          'id'    =>  $this->title.'post_id',
+          'type' => 'post_list',
+          'post_type' => array('lineupvenue')
         )
       );
       $this->fields_array = array(
         array(
             'label'=> 'Untertitel',
             'desc'  => '',
-            'id'    => $this->title.'text',
+            'id'    => $this->title.'_subtitle',
             'type'  => 'text'
             ),
         array(
@@ -81,38 +88,44 @@
         array(
           'label'=> 'Dauer',
           'desc'  => '',
-          'id'    => $this->title.'text',
+          'id'    => $this->title.'_duration',
           'type'  => 'text'
         ),
         array(
           'label'=> 'Anzahl Pausen',
           'desc'  => '',
-          'id'    => $this->title.'text',
+          'id'    => $this->title.'_breaks',
           'type'  => 'text'
         ),
         array(
           'label'=> 'ab',
           'desc'  => '',
-          'id'    => $this->title.'text',
+          'id'    => $this->title.'_age',
           'type'  => 'text'
         ),
         array(
           'label'=> 'Pressestimmen',
           'desc'  => '',
-          'id'    => $this->title.'textarea',
+          'id'    => $this->title.'_press',
           'type'  => 'textarea'
         ),
         array(
           'label'=> 'Ankünder',
           'desc'  => '',
-          'id'    => $this->title.'textarea',
+          'id'    => $this->title.'_announcement',
           'type'  => 'textarea'
         ),
         array(
           'label'=> 'Infos Veranstalter',
           'desc'  => '',
-          'id'    => $this->title.'textarea',
+          'id'    => $this->title.'_info-host',
           'type'  => 'textarea'
+        ),
+        array(
+          'label'=> 'Bilder',
+          'desc'  => '',
+          'id'    => $this->title.'_images',
+          'type'  => 'image-repeater'
         )
       );
     }
