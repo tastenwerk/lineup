@@ -10,12 +10,12 @@
       register_post_type($this->title, // Register Custom Post Type
         array(
           'labels' => array(
-          'name' => __('Lineup Entries', $this->title), 
-          'singular_name' => __('HTML5 Blank Custom Post', $this->title),
-          'add_new' => __('Add New', $this->title),
-          'add_new_item' => __('New Lineupentry', $this->title),
-          'edit' => __('Edit', $this->title),
-          'edit_item' => __('Edit HTML5 Blank Custom Post', $this->title),
+          'name' => __('Spielplaneinträge', $this->title), 
+          'singular_name' => __('Spielplaneintrag', $this->title),
+          'add_new' => __('Neuen Eintrag anlegen', $this->title),
+          'add_new_item' => __('Neuer Spielplaneintrag', $this->title),
+          'edit' => __('Bearbeiten', $this->title),
+          'edit_item' => __('Spielplaneintrag bearbeiten', $this->title),
           'new_item' => __('New HTML5 Blank Custom Post', $this->title),
           'view' => __('View HTML5 Blank Custom Post', $this->title),
           'view_item' => __('View HTML5 Blank Custom Post', $this->title),
