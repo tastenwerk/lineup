@@ -12,20 +12,23 @@ class RepeaterMethods {
     echo '<select name="'.$field['id'].'['.$i.'][0]" id="'.$field['id'].'">
             <option value="">Select One</option>'; // Select One
         foreach($items as $item) {
-            echo '<option value="'.$item->ID.'"',$meta == $item->ID ? ' selected="selected"' : '','>'.$item->post_type.': '.$item->post_title.'</option>';
+            echo '<option value="'.$item->ID.'"',$meta[0] == $item->ID ? ' selected="selected"' : '','>'.$item->post_title.'</option>';
         }
     echo '</select>';
   }
 
   function echo_date_select($field, $meta, $i){
-    echo '<input type="text" class="datepicker" 
-      name="'.$field['id'].'['.$i.'][1]" id="'.$field['id'].'" value="'.$meta.'" size="30" />
-      <br /><span class="description">'.$field['desc'].'</span>'; 
+    // TODO class datepicker
+    echo '<input type="text" class="" placeholder="Datum"
+      name="'.$field['id'].'['.$i.'][1]" id="'.$field['id'].'" value="'.$meta[1].'" size="17" />
+      <input type="text" name="'.$field['id'].'['.$i.'][4]" id="'.$field['id'].'" 
+          value="'.$row[4].'" size="10" placeholder="Uhrzeit" />
+      <br />'; 
   }
 
   public function echo_appointments($field, $meta){
-    echo '<a class="repeatable-add-venue button" href="#">+</a>
-          <ul id="'.$field['id'].'-repeatable" class="custom_repeatable">';
+    echo '<a class="repeatable-add-venue button" href="#">Neuen Termin anlegen</a>
+          <ul id="'.$field['id'].'-repeatable" class="custom_repeatable"> <hr>';
     $i = 0;
     if ($meta) {
       foreach($meta as $row) {
@@ -33,18 +36,29 @@ class RepeaterMethods {
         echo '<label>Spielort: </label>';
         $this->echo_venue_select($field, $row, $i);
         echo '<br>';
-        echo '<label>Datum: </label>';
+        // echo '<label>Datum: </label>';
         $this->echo_date_select($field, $row, $i);
-        // echo '<input type="text" name="'.$field['id'].'['.$i.']" id="'.$field['id'].'" value="'.$row.'" size="30" />';
-        echo '<a class="repeatable-remove button" href="#">-</a></li>';
+        echo '<br>';
+        echo '<input type="text" name="'.$field['id'].'['.$i.'][2]" id="'.$field['id'].'" 
+          value="'.$row[2].'" size="30" placeholder="Reservierungen Email" />';
+        echo '<br>';
+        echo '<input type="text" name="'.$field['id'].'['.$i.'][3]" id="'.$field['id'].'" 
+          value="'.$row[3].'" size="30" placeholder="Reservierungs Link" />';
+        echo '<br>';
+        echo '<a class="repeatable-remove button" href="#">Termin entfernen</a></li>';
+        echo '<hr>';
         $i++;
       }
     } else {
       echo '<li>';
-      // echo '<input type="text" name="'.$field['id'].'['.$i.']" id="'.$field['id'].'" value="" size="30" />';
-      $this->echo_venue_select($field, $meta, $i);
-        $this->echo_date_select($field, $meta, $i);
-      echo '<a class="repeatable-remove button" href="#">-</a></li>';
+        echo '<label>Reservierungen Email: </label>';
+        echo '<input type="text" name="'.$field['id'].'['.$i.'][2]" id="'.$field['id'].'" value="'.$row[2].'" size="30" />';
+        echo '<br>';
+        echo '<label>Reservierungs Link: </label>';
+        echo '<input type="text" name="'.$field['id'].'['.$i.'][3]" id="'.$field['id'].'" value="'.$row[3].'" size="30" />';
+        echo '<br>';
+        echo '<a class="repeatable-remove button" href="#">Termin entfernen</a></li>';
+        echo '<hr>';
     }
     echo '</ul>
     <span class="description">'.$field['desc'].'</span>';

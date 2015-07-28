@@ -34,9 +34,20 @@ class Plugin{
     new Lineupensemble();
     // new Lineupfestival();
     new Lineupperson();
+
     add_action( 'init', array( $this, 'add_js_and_css_files' ) );
+    add_action('admin_head', array( $this, 'custom_css') );
 
   }
+
+  public function custom_css() {
+    echo '<style type="text/css">
+      .event-fields label{
+        width: 30px;
+      }
+    </style>';
+  }
+
 
   public function add_js_and_css_files(){
 
