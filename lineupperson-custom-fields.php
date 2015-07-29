@@ -5,6 +5,7 @@
   class Lineupperson extends Lineupfields {
 
     public $title = 'lineupperson';
+    public $main_box_title = 'Persönliche Informationen';
     
 
     public function create_post_type(){
@@ -29,12 +30,11 @@
         'has_archive' => true,
         'supports' => array(
           'title',
-          'thumbnail',
           'editor',
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
-          'post_tag',
+          // 'post_tag',
           'category'
         ) // Add Category and Post Tags support
         ));
@@ -43,73 +43,74 @@
     public function init_array(){
       $this->side_array = array(
         array(
-            'label'=> 'In Team Seite anzeigen',
+            'label' => 'In Team Seite anzeigen',
             'desc'  => '',
             'id'    => $this->title.'_show',
             'type'  => 'checkbox'
             ),
         array(
-            'label'=> 'Position in Team Seite',
+            'label' => 'Position in Team Seite',
             'desc'  => '',
             'id'    => $this->title.'_show_position',
+            'size'  => '5',
             'type'  => 'text'
             ),
       );
       $this->fields_array = array(
-        // array(
-        //       'label'=> 'Name',
-        //       'desc'  => 'Vor- und Nachname',
-        //       'id'    => $this->title.'_name',
-        //       'type'  => 'text'
-        //     ),
         array(
-            'label'=> 'Funktion',
+            'label' => 'Funktion',
             'desc'  => '',
             'id'    => $this->title.'_position',
             'type'  => 'text'
             ),
         array(
-            'label'=> 'Bechreibung',
-            'desc'  => '',
-            'id'    => $this->title.'_description',
-            'type'  => 'textarea'
+            'label' => 'Kontakt',
+            'type'  => 'sub'
             ),
         array(
-            'label'=> 'Email',
+            'label' => 'Email',
             'desc'  => '',
             'id'    => $this->title.'_email',
             'type'  => 'text'
             ),
         array(
-            'label'=> 'Telefon',
+            'label' => 'Telefon',
             'desc'  => '',
             'id'    => $this->title.'_phone',
             'type'  => 'text'
             ),
         array(
-            'label'=> 'Straße',
+            'label' => 'Adresse',
+            'type'  => 'sub'
+            ),
+        array(
+            'label' => 'Straße',
             'desc'  => '',
             'id'    => $this->title.'textarea',
             'type'  => 'text'
             ),
         array(
-            'label'=> 'Stadt',
+            'label' => 'Stadt',
             'desc'  => '',
             'id'    => $this->title.'textarea',
             'type'  => 'text'
             ),
         array(
-            'label'=> 'Bundesland',
+            'label' => 'Bundesland',
             'desc'  => '',
             'id'    => $this->title.'textarea',
             'type'  => 'text'
             ),
         array(
-            'label'=> 'Land',
+            'label' => 'Land',
             'desc'  => '',
             'id'    => $this->title.'textarea',
             'type'  => 'text'
-            ),        
+            ),     
+        array(
+            'label' => 'Medien',
+            'type'  => 'sub'
+            ),   
         array(
           'label'  => 'Profilbild',
           'desc'  => 'Profilbild der Person für die Homepage',

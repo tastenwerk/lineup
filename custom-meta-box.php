@@ -7,11 +7,12 @@
 
   class CustomMetabox
   {
-    public function __construct( $box_array, $context, $title ) {
+    public function __construct( $box_array, $context, $title, $box_title ) {
       
       $this->box_array = $box_array;
       $this->context = $context;
       $this->title = $title;
+      $this->box_title = $box_title;
       add_action('add_meta_boxes', array( $this, 'add_custom_meta_box') );
       add_action('save_post', array( $this, 'save_custom_meta') );
       $this->main_methods = new MainMethods();
@@ -22,7 +23,7 @@
     public $repeater_methods;
 
     public $title;
-    public $box_title = 'Erweiterte Informationen';
+    public $box_title;
     public $context = 'normal';
     public $box_array = array();
 
@@ -47,57 +48,18 @@
       }
 
       foreach ($this->box_array as $field) {
-              // get value of this field if it exists for this post
         $meta = get_post_meta($post->ID, $field['id'], true);
-              // begin a table row with
         if (!$jump_table) echo '<tr><th>';
         else echo '<div>';
-        echo '<label for="'.$field['id'].'">'.$field['label'].'</label>';
+        echo '<label'; 
+        if($field['id']) echo ' for="'.$field['id'];
+        if($field['type']=='sub') echo ' class="mini-title"';
+        echo '">'.$field['label'].'</label>';
         if (!$jump_table) echo '</th><td>';
-        switch($field['type']) {
-          case 'text':
-          $this->main_methods->echo_text_field($field, $meta);
-          break;
-          case 'textarea':
-          $this->main_methods->echo_text_area($field, $meta);
-          break;
-          case 'checkbox':
-          $this->main_methods->echo_checkbox($field, $meta);
-          break;    
-          case 'select':
-          $this->main_methods->echo_select($field, $meta);
-          break;
-          case 'radio':
-          $this->main_methods->echo_radio($field, $meta);
-          break;
-          case 'checkbox_group':
-          $this->main_methods->echo_checkbox_group($field, $meta);
-          break;
-          case 'date':
-          $this->main_methods->echo_date($field, $meta);
-          break;
-          case 'tax_select':
-          $this->main_methods->echo_tax_select($field, $meta, $post);
-          break;
-          case 'slider':
-          $this->main_methods->echo_slider($field, $meta);
-          break;
-          case 'image':
-          $this->main_methods->echo_image($field, $meta);
-          break;
-          case 'repeatable':
-          $this->repeater_methods->echo_repeatable($field, $meta);
-          break;
-          case 'appointments':
-          $this->repeater_methods->echo_appointments($field, $meta);
-          break;
-          case 'image-repeater':
-          $this->repeater_methods->echo_repeatable_image($field, $meta);
-          break;
-          case 'post_list':
-          $this->main_methods->echo_post_list($field, $meta);
-          break;
-        }
+        if( $field['type'] == 'sub' && !$field['first'] ) echo '<hr>';
+        
+        $this->switch_case( $field, $meta );
+        
         if (!$jump_table) echo '</td></tr>';
         else echo '</div>';
       } 
@@ -127,6 +89,59 @@
           delete_post_meta($post_id, $field['id'], $old);
         }
       } 
+    }
+
+    public function switch_case($field, $meta){
+      switch($field['type']) {
+        case 'text':
+        if( $field['size'] )
+          $this->main_methods->echo_text_field_size($field, $meta, $field['size'] );
+        else
+          $this->main_methods->echo_text_field($field, $meta);
+        break;
+        case 'textarea':
+        $this->main_methods->echo_text_area($field, $meta);
+        break;
+        case 'checkbox':
+        $this->main_methods->echo_checkbox($field, $meta);
+        break;    
+        case 'select':
+        $this->main_methods->echo_select($field, $meta);
+        break;
+        case 'radio':
+        $this->main_methods->echo_radio($field, $meta);
+        break;
+        case 'checkbox_group':
+        $this->main_methods->echo_checkbox_group($field, $meta);
+        break;
+        case 'date':
+        $this->main_methods->echo_date($field, $meta);
+        break;
+        case 'tax_select':
+        $this->main_methods->echo_tax_select($field, $meta, $post);
+        break;
+        case 'slider':
+        $this->main_methods->echo_slider($field, $meta);
+        break;
+        case 'image':
+        $this->main_methods->echo_image($field, $meta);
+        break;
+        case 'repeatable':
+        $this->repeater_methods->echo_repeatable($field, $meta);
+        break;
+        case 'appointments':
+        $this->repeater_methods->echo_appointments($field, $meta);
+        break;
+        case 'image-repeater':
+        $this->repeater_methods->echo_repeatable_image($field, $meta);
+        break;
+        case 'post_list':
+        $this->main_methods->echo_post_list($field, $meta);
+        break;
+        case 'post_repeater':
+        $this->repeater_methods->echo_post_select_repeater($field, $meta);
+        break;
+      }
     }
 
   }

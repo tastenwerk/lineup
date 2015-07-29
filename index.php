@@ -36,22 +36,13 @@ class Plugin{
     new Lineupperson();
 
     add_action( 'init', array( $this, 'add_js_and_css_files' ) );
-    add_action('admin_head', array( $this, 'custom_css') );
 
   }
-
-  public function custom_css() {
-    echo '<style type="text/css">
-      .event-fields label{
-        width: 30px;
-      }
-    </style>';
-  }
-
 
   public function add_js_and_css_files(){
 
     if(is_admin()) {
+      wp_enqueue_style('lineup-theme', plugin_dir_url( __FILE__ ).'css/lineup-theme.css');
       wp_enqueue_style('jquery-ui-theme', plugin_dir_url( __FILE__ ).'css/jquery-ui.theme.min.css');
       wp_enqueue_style('jquery-ui', plugin_dir_url( __FILE__ ).'css/jquery-ui.min.css');
       wp_enqueue_script('jquery-ui', plugin_dir_url( __FILE__ ).'js/jquery-ui.min.js');

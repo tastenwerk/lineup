@@ -4,6 +4,40 @@ namespace Lineup;
 
 class RepeaterMethods {
 
+  function echo_post_select_repeater( $field, $meta ){
+    $items = get_posts( array (
+        'post_type' => $field['post_type'],
+        'posts_per_page' => -1
+    ));
+
+    echo '<a class="repeatable-add-side button" href="#">Eintrag hinzufügen</a>
+          <ul id="'.$field['id'].'-repeatable" class="custom_repeatable">';
+    $i = 0;
+    if ($meta) {
+      foreach($meta as $row) {
+        echo '<li>';
+        echo '<select name="'.$field['id'].'['.$i.']" id="'.$field['id'].'">
+                <option value="">Select One</option>'; // Select One
+            foreach($items as $item) {
+                echo '<option value="'.$item->ID.'"',$row == $item->ID ? ' selected="selected"' : '','>'.$item->post_title.'</option>';
+            }
+        echo '</select><a class="repeatable-remove button" href="#">Eintrag entfernen</a></li>';
+        $i++;
+      }
+    } else {
+      echo '<li>';
+      echo '<select name="'.$field['id'].'['.$i.']" id="'.$field['id'].'">
+              <option value="">Select One</option>'; // Select One
+          foreach($items as $item) {
+              echo '<option value="'.$item->ID.'"', '','>'.$item->post_title.'</option>';
+          }
+      echo '</select><a class="repeatable-remove button" href="#">Eintrag entfernen</a></li>';
+    }
+    echo '</ul>
+    <span class="description">'.$field['desc'].'</span>';
+    // print_r($meta);
+  }
+
   function echo_venue_select($field, $meta, $i){
     $items = get_posts( array (
         'post_type' => 'lineupvenue',
