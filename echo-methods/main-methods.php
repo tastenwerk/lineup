@@ -12,7 +12,7 @@ class MainMethods {
     echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
             <option value="">Select One</option>'; // Select One
         foreach($items as $item) {
-            echo '<option value="'.$item->ID.'"',$meta == $item->ID ? ' selected="selected"' : '','>'.$item->post_type.': '.$item->post_title.'</option>';
+            echo '<option value="'.$item->ID.'"',$meta == $item->ID ? ' selected="selected"' : '','>'.$item->post_title.'</option>';
         }
     echo '</select><br /><span class="description">'.$field['desc'].'</span>';
   }

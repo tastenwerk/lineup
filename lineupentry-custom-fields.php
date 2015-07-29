@@ -42,13 +42,13 @@
     }
 
     public function init_array(){
-      // $this->side_array = array(
-      //    array(
-      //     'label' => 'Termin(e)',
-      //     'desc'  => 'Termin(e) der geplanten Veranstaltung',
-      //     'id'    => $this->title.'_dates',
-      //     'type'  => 'appointments'
-      //   ),
+      $this->side_array = array(
+         array(
+          'label' => '',
+          'desc'  => 'Termin(e) der geplanten Veranstaltung',
+          'id'    => $this->title.'_dates',
+          'type'  => 'appointments'
+        ),
       //   //   array(
       //   //   'label' => 'Mitwirkende',
       //   //   'desc'  => 'Mitwirkende der geplanten Veranstaltung',
@@ -62,14 +62,14 @@
       //     'type' => 'post_list',
       //     'post_type' => array('lineupvenue')
       //   )
-      // );
+      );
       $this->fields_array = array(
-         array(
-          'label' => 'Termin(e)',
-          'desc'  => 'Termin(e) der geplanten Veranstaltung',
-          'id'    => $this->title.'_dates',
-          'type'  => 'appointments'
-        ),
+        //  array(
+        //   'label' => 'Termin(e)',
+        //   'desc'  => 'Termin(e) der geplanten Veranstaltung',
+        //   'id'    => $this->title.'_dates',
+        //   'type'  => 'appointments'
+        // ),
         array(
             'label'=> 'Untertitel',
             'desc'  => '',
@@ -78,18 +78,21 @@
             ),
         array(
           'label' => 'Ensembles',
-          'id'    => 'category',
-          'type'  => 'tax_select'
+          'id'    => $this->title.'_ensemble',
+          'post_type' => 'lineupensemble',
+          'type'  => 'post_list'
         ),
         array(
           'label' => 'Autorenschaft',
-          'id'    => 'category',
-          'type'  => 'tax_select'
+          'id'    => $this->title.'_author',
+          'post_type' => 'lineupperson',
+          'type'  => 'post_list'
         ),
         array(
           'label' => 'Inszenierung',
-          'id'    => 'category',
-          'type'  => 'tax_select'
+          'id'    => $this->title.'_director',
+          'post_type' => 'lineupperson',
+          'type'  => 'post_list'
         ),
         array(
           'label'=> 'Dauer',

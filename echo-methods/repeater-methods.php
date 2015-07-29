@@ -10,7 +10,7 @@ class RepeaterMethods {
         'posts_per_page' => -1
     ));
 
-    echo '<a class="repeatable-add-side button" href="#">Eintrag hinzufügen</a>
+    echo '<a class="repeatable-add-side-select button" href="#">Eintrag hinzufügen</a>
           <ul id="'.$field['id'].'-repeatable" class="custom_repeatable">';
     $i = 0;
     if ($meta) {
@@ -21,7 +21,7 @@ class RepeaterMethods {
             foreach($items as $item) {
                 echo '<option value="'.$item->ID.'"',$row == $item->ID ? ' selected="selected"' : '','>'.$item->post_title.'</option>';
             }
-        echo '</select><a class="repeatable-remove button" href="#">Eintrag entfernen</a></li>';
+        echo '</select><a class="repeatable-remove button" href="#">x</a></li>';
         $i++;
       }
     } else {
@@ -31,7 +31,7 @@ class RepeaterMethods {
           foreach($items as $item) {
               echo '<option value="'.$item->ID.'"', '','>'.$item->post_title.'</option>';
           }
-      echo '</select><a class="repeatable-remove button" href="#">Eintrag entfernen</a></li>';
+      echo '</select><a class="repeatable-remove button" href="#">x</a></li>';
     }
     echo '</ul>
     <span class="description">'.$field['desc'].'</span>';
@@ -54,9 +54,9 @@ class RepeaterMethods {
   function echo_date_select($field, $meta, $i){
     // TODO class datepicker
     echo '<input type="text" class="" placeholder="Datum"
-      name="'.$field['id'].'['.$i.'][1]" id="'.$field['id'].'" value="'.$meta[1].'" size="17" />
+      name="'.$field['id'].'['.$i.'][1]" id="'.$field['id'].'" value="'.$meta[1].'" size="12" />
       <input type="text" name="'.$field['id'].'['.$i.'][4]" id="'.$field['id'].'" 
-          value="'.$row[4].'" size="10" placeholder="Uhrzeit" />
+          value="'.$row[4].'" size="6" placeholder="Uhrzeit" />
       <br />'; 
   }
 
@@ -69,15 +69,15 @@ class RepeaterMethods {
         echo '<li>';
         echo '<label>Spielort: </label>';
         $this->echo_venue_select($field, $row, $i);
-        echo '<br>';
+        // echo '<br>';
         // echo '<label>Datum: </label>';
         $this->echo_date_select($field, $row, $i);
         echo '<br>';
         echo '<input type="text" name="'.$field['id'].'['.$i.'][2]" id="'.$field['id'].'" 
-          value="'.$row[2].'" size="30" placeholder="Reservierungen Email" />';
+          value="'.$row[2].'" size="22" placeholder="Reservierungen Email" />';
         echo '<br>';
         echo '<input type="text" name="'.$field['id'].'['.$i.'][3]" id="'.$field['id'].'" 
-          value="'.$row[3].'" size="30" placeholder="Reservierungs Link" />';
+          value="'.$row[3].'" size="22" placeholder="Reservierungs Link" />';
         echo '<br>';
         echo '<a class="repeatable-remove button" href="#">Termin entfernen</a></li>';
         echo '<hr>';
@@ -86,10 +86,10 @@ class RepeaterMethods {
     } else {
       echo '<li>';
         echo '<label>Reservierungen Email: </label>';
-        echo '<input type="text" name="'.$field['id'].'['.$i.'][2]" id="'.$field['id'].'" value="'.$row[2].'" size="30" />';
+        echo '<input type="text" name="'.$field['id'].'['.$i.'][2]" id="'.$field['id'].'" value="'.$row[2].'" size="22" />';
         echo '<br>';
         echo '<label>Reservierungs Link: </label>';
-        echo '<input type="text" name="'.$field['id'].'['.$i.'][3]" id="'.$field['id'].'" value="'.$row[3].'" size="30" />';
+        echo '<input type="text" name="'.$field['id'].'['.$i.'][3]" id="'.$field['id'].'" value="'.$row[3].'" size="22" />';
         echo '<br>';
         echo '<a class="repeatable-remove button" href="#">Termin entfernen</a></li>';
         echo '<hr>';
