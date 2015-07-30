@@ -54,10 +54,10 @@ class RepeaterMethods {
   function echo_date_select($field, $meta, $i){
     // TODO class datepicker
     echo '<input type="text" class="" placeholder="Datum"
-      name="'.$field['id'].'['.$i.'][1]" id="'.$field['id'].'" value="'.$meta[1].'" size="12" />
-      <input type="text" name="'.$field['id'].'['.$i.'][4]" id="'.$field['id'].'" 
-          value="'.$row[4].'" size="6" placeholder="Uhrzeit" />
-      <br />'; 
+      name="'.$field['id'].'['.$i.'][1]" id="'.$field['id'].'" value="'.$meta[1].'" size="12" />';
+      // <input type="text" name="'.$field['id'].'['.$i.'][4]" id="'.$field['id'].'" 
+      //     value="'.$row[4].'" size="6" placeholder="Uhrzeit" />
+      // <br />'; 
   }
 
   public function echo_appointments($field, $meta){
@@ -68,10 +68,12 @@ class RepeaterMethods {
       foreach($meta as $row) {
         echo '<li>';
         echo '<label>Spielort: </label>';
-        $this->echo_venue_select($field, $row, $i);
+        $this->echo_venue_select($field, $row, $i); 
         // echo '<br>';
         // echo '<label>Datum: </label>';
         $this->echo_date_select($field, $row, $i);
+        echo '<input type="text" name="'.$field['id'].'['.$i.'][5]" id="'.$field['id'].'" 
+          value="'.$row[5].'" size="6" placeholder="Uhrzeit" />';
         echo '<br>';
         echo '<input type="text" name="'.$field['id'].'['.$i.'][2]" id="'.$field['id'].'" 
           value="'.$row[2].'" size="22" placeholder="Reservierungen Email" />';
