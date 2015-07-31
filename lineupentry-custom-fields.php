@@ -45,23 +45,36 @@
       $this->side_array = array(
          array(
           'label' => '',
-          'desc'  => 'Termin(e) der geplanten Veranstaltung',
+          'desc'  => ' ',
           'id'    => $this->title.'_dates',
           'type'  => 'appointments'
         ),
-      //   //   array(
-      //   //   'label' => 'Mitwirkende',
-      //   //   'desc'  => 'Mitwirkende der geplanten Veranstaltung',
-      //   //   'id'    => $this->title.'_persons',
-      //   //   'type'  => 'dates-repeater'
-      //   // ),
-      //   array(
-      //     'label' => 'Post List',
-      //     'desc' => 'A description for the field.',
-      //     'id'    =>  $this->title.'post_id',
-      //     'type' => 'post_list',
-      //     'post_type' => array('lineupvenue')
-      //   )
+        array(
+          'label' => 'Mitwirkende',
+          'type'  => 'sub'
+        ),
+        array(
+          'label' => '',
+          'id'    => $this->title.'_members',
+          'type'  => 'member-repeater'
+        ),
+        array(
+          'label' => 'Marketing',
+          'type'  => 'sub'
+        ),
+        array(
+          'label' => 'Videolink',
+          'desc'  => '',
+          'size'  => '20',
+          'id'    => $this->title.'_video-link',
+          'type'  => 'text'
+        ),
+        array(
+          'label' => 'Youtubelink ',
+          'desc'  => '',
+          'id'    => $this->title.'_youtube',
+          'type'  => 'checkbox'
+        )
       );
       $this->fields_array = array(
         //  array(

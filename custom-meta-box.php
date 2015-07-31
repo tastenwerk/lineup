@@ -141,6 +141,9 @@
         case 'post_repeater':
         $this->repeater_methods->echo_post_select_repeater($field, $meta);
         break;
+        case 'member-repeater':
+        $this->repeater_methods->echo_member_repeater($field, $meta);
+        break;
       }
     }
 

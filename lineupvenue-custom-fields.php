@@ -106,6 +106,12 @@
             'type'  => 'text'
             ),
         array(
+            'label'=> 'Postleitzahl',
+            'desc'  => '',
+            'id'    => $this->title.'_zip',
+            'type'  => 'text'
+            ),
+        array(
             'label'=> 'Stadt',
             'desc'  => '',
             'id'    => $this->title.'_city',

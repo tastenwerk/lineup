@@ -35,6 +35,45 @@ class RepeaterMethods {
     }
     echo '</ul>
     <span class="description">'.$field['desc'].'</span>';
+  }
+
+  function echo_member_repeater( $field, $meta ){
+    $items = get_posts( array (
+        'post_type' => 'lineupperson',
+        'posts_per_page' => -1
+    ));
+
+    echo '<a class="repeatable-add-side-select button" href="#">Eintrag hinzufügen</a>
+          <ul id="'.$field['id'].'-repeatable" class="custom_repeatable">';
+    $i = 0;
+    if ($meta) {
+      foreach($meta as $row) {
+        echo '<li>';
+        echo '<select name="'.$field['id'].'['.$i.'][0]" id="'.$field['id'].'">
+                <option value="">Select One</option>'; // Select One
+            foreach($items as $item) {
+                echo '<option value="'.$item->ID.'"',$row[0] == $item->ID ? ' selected="selected"' : '','>'.$item->post_title.'</option>';
+            }
+        echo '</select>';
+        echo '<input type="text" name="'.$field['id'].'['.$i.'][1]" id="'.$field['id'].'" 
+           value="'.$row[1].'" size="22" placeholder="Funktion" />';
+        echo '<a class="repeatable-remove button" href="#">x</a></li>';
+        $i++;
+      }
+    } else {
+      echo '<li>';
+      echo '<select name="'.$field['id'].'['.$i.'][0]" id="'.$field['id'].'">
+              <option value="">Select One</option>'; // Select One
+          foreach($items as $item) {
+              echo '<option value="'.$item->ID.'"', '','>'.$item->post_title.'</option>';
+          }
+      echo '</select>';
+      echo '<input type="text" name="'.$field['id'].'['.$i.'][1]" id="'.$field['id'].'" 
+         value="" size="22" placeholder="Funktion" />';
+      echo '<a class="repeatable-remove button" href="#">x</a></li>';
+    }
+    echo '</ul>
+    <span class="description">'.$field['desc'].'</span>';
     // print_r($meta);
   }
 
