@@ -53,6 +53,45 @@ class Plugin{
 
 }
 
+/**
+ * Save post metadata when a post is saved.
+ *
+ * @param int $post_id The post ID.
+ * @param post $post The post object.
+ * @param bool $update Whether this is an existing post being updated or not.
+ */
+function update_ticketeer( $post_id, $post, $update ) {
+
+    /*
+     * In production code, $slug should be set only once in the plugin,
+     * preferably as a class property, rather than in each function that needs it.
+     */
+    $slug = 'book';
+
+    // If this isn't a 'book' post, don't update it.
+    if ( $slug != $post->post_type ) {
+        return;
+    }
+
+    // - Update the post's metadata.
+
+    // if ( isset( $_REQUEST['book_author'] ) ) {
+    //     update_post_meta( $post_id, 'book_author', sanitize_text_field( $_REQUEST['book_author'] ) );
+    // }
+
+    // if ( isset( $_REQUEST['publisher'] ) ) {
+    //     update_post_meta( $post_id, 'publisher', sanitize_text_field( $_REQUEST['publisher'] ) );
+    // }
+
+    // // Checkboxes are present if checked, absent if not.
+    // if ( isset( $_REQUEST['inprint'] ) ) {
+    //     update_post_meta( $post_id, 'inprint', TRUE );
+    // } else {
+    //     update_post_meta( $post_id, 'inprint', FALSE );
+    // }
+}
+// add_action( 'save_post', 'update_ticketeer', 10, 3 );
+
 $lineup_plugin = new Plugin();
 
 ?>

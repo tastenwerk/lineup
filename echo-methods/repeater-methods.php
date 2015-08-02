@@ -85,7 +85,7 @@ class RepeaterMethods {
     echo '<select name="'.$field['id'].'['.$i.'][0]" id="'.$field['id'].'">
             <option value="">Select One</option>'; // Select One
         foreach($items as $item) {
-            echo '<option value="'.$item->ID.'"',$meta[0] == $item->ID ? ' selected="selected"' : '','>'.$item->post_title.'</option>';
+            echo '<option value="'.$item->ID.'"',$meta[0] == $item->ID ? ' selected="selected"' : '','>'. $item->post_title .'</option>';
         }
     echo '</select>';
   }
@@ -161,20 +161,21 @@ class RepeaterMethods {
 
   public function echo_repeatable_image($field, $meta){
       echo '<a class="repeatable-add button" href="#">+</a>
-              <ul id="'.$field['id'].'-repeatable" class="custom_repeatable">';
+              <ul id="'.$field['id'].'-repeatable" class="custom_repeatable image-repeatable">';
       $i = 0;
       // $meta=array();
       if ($meta) {
           foreach($meta as $row) {
-              echo '<li><span class="sort hndle">|||</span>';
-              echo '<span class="custom_default_image" style="display:none">'.$image.'</span>';
-              if ($row) { $image = wp_get_attachment_image_src($row, 'medium'); $image = $image[0]; }               
+              // echo '<li><span class="sort hndle">|||</span>';
+              echo '<div class="pic-wrapper"><span class="custom_default_image" style="display:none">'.$image.'</span>';
+              echo '<span class="dashicons dashicons-smiley"></span>';
+              if ($row) { $image = wp_get_attachment_image_src($row, 'thumb'); $image = $image[0]; }               
               echo    '<input name="'.$field['id'].'['.$i.']" id="'.$field['id'].'" type="hidden" class="custom_upload_image" value="'.$row.'" />
                           <img src="'.$image.'" class="custom_preview_image" alt="" /><br />
                               <input class="custom_upload_image_button button" type="button" value="Choose Image" />
                               <small> <a href="#" class="custom_clear_image_button">Remove Image</a></small>
                               <br clear="all" />';            
-              echo '<a class="repeatable-remove button" href="#">-</a></li>';
+              echo '<a class="repeatable-remove button" href="#">-</a></li></div>';
               $i++;
           }
       } else {
