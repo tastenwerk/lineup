@@ -148,6 +148,12 @@
           'desc'  => '',
           'id'    => $this->title.'_images',
           'type'  => 'image-repeater'
+        ),
+        array(
+          'label'=> 'Downloads',
+          'desc'  => '',
+          'id'    => $this->title.'_downloads',
+          'type'  => 'upload'
         )
       );
     }

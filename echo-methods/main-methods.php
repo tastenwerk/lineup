@@ -4,6 +4,17 @@ namespace Lineup;
 
 class MainMethods {
 
+  public function echo_upload($field, $meta){
+    // wp_nonce_field(plugin_basename(__FILE__), 'wp_custom_attachment_nonce');
+
+    $html = '<p class="description">';
+    $html .= 'Upload your PDF here.';
+    $html .= '</p>';
+    $html .= '<input type="file" id="'.$field['id'].'" name="'.$field['id'].'" value="'.$meta.'" size="25" />';
+     
+    echo $html;
+  }
+
   public function echo_post_list($field, $meta){
     $items = get_posts( array (
         'post_type' => $field['post_type'],

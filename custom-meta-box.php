@@ -144,6 +144,9 @@
         case 'member-repeater':
         $this->repeater_methods->echo_member_repeater($field, $meta);
         break;
+        case 'upload':
+        $this->main_methods->echo_upload($field, $meta);
+        break;
       }
     }
 
