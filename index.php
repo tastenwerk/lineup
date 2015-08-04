@@ -21,7 +21,7 @@ include 'lineupvenue-custom-fields.php';
 include 'lineupensemble-custom-fields.php';  
 include 'lineupfestival-custom-fields.php';  
 include 'lineupperson-custom-fields.php';  
-
+include 'ess-feed.php';
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
@@ -49,6 +49,9 @@ class Plugin{
       wp_enqueue_script('image-upload', plugin_dir_url( __FILE__ ).'js/image-upload.js');
       wp_enqueue_script('repeatable-fields', plugin_dir_url( __FILE__ ).'js/repeatable-fields.js');
     }
+    add_feed('ess', 'add_ess_feed' );
+    global $wp_rewrite;
+    $wp_rewrite->flush_rules( TRUE );
   }
 
 }

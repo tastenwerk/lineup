@@ -80,3 +80,8 @@ li:first-child .pic-tools span:first-child{
   top: 90px;
   width: 102px;
 }
+
+.custom_preview_image{
+  width: 100px;
+  height: 100px;
+}

@@ -7,12 +7,20 @@ class MainMethods {
   public function echo_upload($field, $meta){
     // wp_nonce_field(plugin_basename(__FILE__), 'wp_custom_attachment_nonce');
 
-    $html = '<p class="description">';
-    $html .= 'Upload your PDF here.';
-    $html .= '</p>';
-    $html .= '<input type="file" id="'.$field['id'].'" name="'.$field['id'].'" value="'.$meta.'" size="25" />';
+    // echo '<li class="image-repeatable">';
+    // // echo '<span class="sort hndle">|||</span>';
+    // echo '<div class="pic-wrapper"><span class="pic-background dashicons dashicons-format-image"></span>';
+    // echo '<div class="pic-tools repeatable-remove"><span class="dashicons dashicons-star-filled"></span>'; 
+    // echo '<span class="dashicons dashicons-no-alt"></span>';
+    // echo '</div>';
+    // echo '<span class="custom_default_image" style="display:none">'.$image.'</span>';
+    // if ($row) { $image = wp_get_attachment_image_src($row, 'thumb'); $image = $image[0]; }               
+    echo '<input class="custom_upload_file_button button" type="button" value="Datei hochladen"/>';
+    echo '<input name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'"/>';
+            
+    // echo '</li></div>';
      
-    echo $html;
+    // echo $html;
   }
 
   public function echo_post_list($field, $meta){

@@ -160,7 +160,7 @@ class RepeaterMethods {
   }
 
   public function echo_repeatable_image($field, $meta){
-      echo '<a class="repeatable-add button" href="#">Neues Bild zur Gallery hinzufügen</a>
+      echo '<a class="repeatable-image-add button" href="#">Neues Bild zur Gallery hinzufügen</a>
               <ul id="'.$field['id'].'-repeatable" class="custom_repeatable">';
       $i = 0;
       // $meta=array();
@@ -184,16 +184,17 @@ class RepeaterMethods {
               $i++;
           }
       } else {
-          echo '<li><span class="sort hndle">|||</span>';
-          $image = get_template_directory_uri().'/images/image.png'; 
-          echo '<span class="custom_default_image" style="display:none">'.$image.'</span>';
-          echo    '<input name="'.$field['id'].'['.$i.']" id="'.$field['id'].'"  type="hidden" class="custom_upload_image" value="'.$meta.'" />
-                      <img src="'.$image.'" class="custom_preview_image" alt="" /><br />
-                          <span class="dashicons dashicons-media-interactive"></span>
-                          <input class="custom_upload_image_button button" type="button" value="Choose Image" />                          
-                          <small> <a href="#" class="custom_clear_image_button">Remove Image</a></small>
-                          <br clear="all" />';
-          echo '<a class="repeatable-remove button" href="#">-</a></li>';
+          echo '<li class="image-repeatable">';
+          echo '<div class="pic-wrapper"><span class="pic-background dashicons dashicons-format-image"></span>';
+          echo '<div class="pic-tools repeatable-remove"><span class="dashicons dashicons-star-filled"></span>'; 
+          echo '<span class="dashicons dashicons-no-alt"></span>';
+          echo '</div>';
+          echo '<span class="custom_default_image" style="display:none">'.$image.'</span>';         
+          echo    '<input name="'.$field['id'].'['.$i.']" id="'.$field['id'].'" type="hidden" class="custom_upload_image" value="" />
+                    <img src="'.$image.'" class="custom_preview_image" alt="" /><br />
+                    <input class="custom_upload_image_button button" type="button" value="Bild wählen" />
+                    <br clear="all" />';            
+          echo '</li></div>';
       }
       echo '</ul>
          <span class="description">'.$field['desc'].'</span>';
