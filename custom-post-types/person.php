@@ -1,37 +1,36 @@
 <?php 
 
   namespace Lineup;
-  
-  class Lineupensemble extends Lineupfields {
+    
+  class Person extends Lineupfields {
 
-    public $title = 'lineupensemble';
-    public $side_box_title = 'Mitglieder';
+    public $title = 'lineupperson';
+    public $main_box_title = 'Persönliche Informationen';
+    
 
     public function create_post_type(){
       register_post_type($this->title, // Register Custom Post Type
         array(
           'labels' => array(
-          'name' => __('Ensembles', $this->title), 
-          'singular_name' => __('Ensemble', $this->title),
-          'add_new' => __('Neuen Eintrag hinzufügen', $this->title),
-          'add_new_item' => __('Neues Ensemble', $this->title),
+          'name' => __('Personen', $this->title), // Rename these to suit
+          'singular_name' => __('HTML5 Blank Custom Post', $this->title),
+          'add_new' => __('Neue Person erstellen', $this->title),
+          'add_new_item' => __('Neue Person', $this->title),
           'edit' => __('Edit', $this->title),
-          'edit_item' => __('Ensemble bearbeiten', $this->title),
-          'new_item' => __('New HTML5 Blank Custom Post', $this->title),
+          'edit_item' => __('Person bearbeiten', $this->title),
+          'new_item' => __('Neue Person', $this->title),
           'view' => __('View HTML5 Blank Custom Post', $this->title),
           'view_item' => __('View HTML5 Blank Custom Post', $this->title),
           'search_items' => __('Search HTML5 Blank Custom Post', $this->title),
           'not_found' => __('No HTML5 Blank Custom Posts found', $this->title),
           'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', $this->title)
           ),
-          'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+        'public' => true,
+        'hierarchical' => false, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
         'supports' => array(
           'title',
           'editor',
-          // 'excerpt',
-          'thumbnail'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
@@ -39,20 +38,32 @@
           'category'
         ) // Add Category and Post Tags support
         ));
-
     }
-
+    
     public function init_array(){
       $this->side_array = array(
         array(
-          'label' => '',
-          'post_type' => 'lineupperson',
-          'id'    => $this->title.'_show',
-          'type'  => 'post_repeater'
-        )
+            'label' => 'In Team Seite anzeigen',
+            'desc'  => '',
+            'id'    => $this->title.'_show',
+            'type'  => 'checkbox'
+            ),
+        array(
+            'label' => 'Position in Team Seite',
+            'desc'  => '',
+            'id'    => $this->title.'_show_position',
+            'size'  => '5',
+            'type'  => 'text'
+            ),
       );
       $this->fields_array = array(
-         array(
+        array(
+            'label' => 'Funktion',
+            'desc'  => '',
+            'id'    => $this->title.'_position',
+            'type'  => 'text'
+            ),
+        array(
             'label' => 'Kontakt',
             'type'  => 'sub'
             ),
@@ -95,7 +106,23 @@
             'desc'  => '',
             'id'    => $this->title.'textarea',
             'type'  => 'text'
-            )     
+            ),     
+        array(
+            'label' => 'Medien',
+            'type'  => 'sub'
+            ),   
+        array(
+          'label'  => 'Profilbild',
+          'desc'  => 'Profilbild der Person für die Homepage',
+          'id'    => $this->title.'_profile_pic',
+          'type'  => 'image'
+        )    
+        // array(
+        //   'label'  => 'Hintergrundbild',
+        //   'desc'  => 'Hintergrundbild der Person für die Homepage',
+        //   'id'    => $this->title.'_background_pic',
+        //   'type'  => 'image'
+        // )
       );
     }
   }

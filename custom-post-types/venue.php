@@ -2,7 +2,7 @@
 
   namespace Lineup;
     
-  class Lineupvenue extends Lineupfields {
+  class Venue extends Lineupfields {
     public $title = 'lineupvenue';
     public $side_box_title = 'Erreichbarkeit';
 

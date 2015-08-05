@@ -2,7 +2,7 @@
 
   namespace Lineup;
     
-  class Lineupfestival extends Lineupfields {
+  class Festival extends Lineupfields {
     public $title = 'lineupfestival';
 
     public function create_post_type(){

@@ -2,7 +2,7 @@
 
   namespace Lineup;
   
-  class Lineupentry extends Lineupfields {
+  class Entry extends Lineupfields {
 
     public $title = 'lineupentry';
 
@@ -34,7 +34,8 @@
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
-          // 'post_tag',
+          // 'people',
+          // 'person',
           'category'
         ) // Add Category and Post Tags support
         ));

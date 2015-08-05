@@ -83,8 +83,29 @@
       foreach ($this->box_array as $field) {
         $old = get_post_meta($post_id, $field['id'], true);
         $new = $_POST[$field['id']];
+        $temp = array();
+        $index = 0;
+       // print_r( $field['type'] );
+        if( $field['type'] == 'appointments' ){
+          foreach ($new as $row ) {
+
+            $new_row = array();
+            foreach ($row as $key => $value) {
+              $new_row[$key] = $value;
+              if( $key == "date" )
+                $new_row[$key] = strtotime( $value );
+            }
+            // $row = $new_row;
+            // print_r( $row );
+            $temp[$index] = $new_row;
+            $index++;
+          }
+          $new = $temp;
+          // print_r( $temp );
+        }
         if ($new && $new != $old) {
           update_post_meta($post_id, $field['id'], $new);
+          
         } elseif ('' == $new && $old) {
           delete_post_meta($post_id, $field['id'], $old);
         }

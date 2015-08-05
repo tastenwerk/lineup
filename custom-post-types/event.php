@@ -2,23 +2,21 @@
 
   namespace Lineup;
     
-  class Lineupperson extends Lineupfields {
-
-    public $title = 'lineupperson';
-    public $main_box_title = 'Persönliche Informationen';
-    
+  class Event extends Lineupfields {
+    public $title = 'lineupevent';
+    public $main_box_title = 'Eigenschaften';
 
     public function create_post_type(){
       register_post_type($this->title, // Register Custom Post Type
         array(
           'labels' => array(
-          'name' => __('Personen', $this->title), // Rename these to suit
-          'singular_name' => __('HTML5 Blank Custom Post', $this->title),
-          'add_new' => __('Neue Person erstellen', $this->title),
-          'add_new_item' => __('Neue Person', $this->title),
+          'name' => __('Events', $this->title), // Rename these to suit
+          'singular_name' => __('Event', $this->title),
+          'add_new' => __('Neues Event anlegen', $this->title),
+          'add_new_item' => __('Neuer Spielort', $this->title),
           'edit' => __('Edit', $this->title),
-          'edit_item' => __('Person bearbeiten', $this->title),
-          'new_item' => __('Neue Person', $this->title),
+          'edit_item' => __('Spielort bearbeiten', $this->title),
+          'new_item' => __('New HTML5 Blank Custom Post', $this->title),
           'view' => __('View HTML5 Blank Custom Post', $this->title),
           'view_item' => __('View HTML5 Blank Custom Post', $this->title),
           'search_items' => __('Search HTML5 Blank Custom Post', $this->title),
@@ -30,99 +28,107 @@
         'has_archive' => true,
         'supports' => array(
           'title',
-          'editor',
+          // 'editor'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
-          // 'post_tag',
-          'category'
+          // 'post_tag'
         ) // Add Category and Post Tags support
         ));
+
     }
     
-    public function init_array(){
+    public function init_array(){ 
       $this->side_array = array(
         array(
-            'label' => 'In Team Seite anzeigen',
+            'label' => 'Öffnungszeiten',
             'desc'  => '',
-            'id'    => $this->title.'_show',
-            'type'  => 'checkbox'
-            ),
-        array(
-            'label' => 'Position in Team Seite',
-            'desc'  => '',
-            'id'    => $this->title.'_show_position',
-            'size'  => '5',
-            'type'  => 'text'
-            ),
-      );
-      $this->fields_array = array(
-        array(
-            'label' => 'Funktion',
-            'desc'  => '',
-            'id'    => $this->title.'_position',
+            'id'    => $this->title.'_opening_hours',
+            'size'  => '27',
             'type'  => 'text'
             ),
         array(
-            'label' => 'Kontakt',
+            'label' => 'Öffentliche Verkehrsmittel',
+            'desc'  => '',
+            'first' => 'true',
             'type'  => 'sub'
             ),
         array(
-            'label' => 'Email',
+            'label' => 'Bus',
+            'desc'  => '',
+            'id'    => $this->title.'_bus',
+            'size'  => '27',
+            'type'  => 'text'
+            ),
+        array(
+            'label' => 'Straßenbahn',
+            'desc'  => '',
+            'id'    => $this->title.'_tram',
+            'size'  => '27',
+            'type'  => 'text'
+            ),
+        array(
+            'label' => 'Zug',
+            'desc'  => '',
+            'id'    => $this->title.'_train',
+            'size'  => '27',
+            'type'  => 'text'
+            )
+      );
+      $this->fields_array = array( 
+        array(
+            'label'=> 'Kontakt',
+            'desc'  => '',
+            'first' => 'true',
+            'type'  => 'sub'
+            ),
+        array(
+            'label'=> 'Email',
             'desc'  => '',
             'id'    => $this->title.'_email',
             'type'  => 'text'
             ),
         array(
-            'label' => 'Telefon',
+            'label'=> 'Telefon',
             'desc'  => '',
             'id'    => $this->title.'_phone',
             'type'  => 'text'
             ),
         array(
-            'label' => 'Adresse',
+            'label'=> 'Adresse',
+            'desc'  => '',
             'type'  => 'sub'
             ),
         array(
-            'label' => 'Straße',
+            'label'=> 'Straße',
             'desc'  => '',
-            'id'    => $this->title.'textarea',
+            'id'    => $this->title.'_street',
             'type'  => 'text'
             ),
         array(
-            'label' => 'Stadt',
+            'label'=> 'Postleitzahl',
             'desc'  => '',
-            'id'    => $this->title.'textarea',
+            'id'    => $this->title.'_zip',
             'type'  => 'text'
             ),
         array(
-            'label' => 'Bundesland',
+            'label'=> 'Stadt',
             'desc'  => '',
-            'id'    => $this->title.'textarea',
+            'id'    => $this->title.'_city',
             'type'  => 'text'
             ),
         array(
-            'label' => 'Land',
+            'label'=> 'Bundesland',
             'desc'  => '',
-            'id'    => $this->title.'textarea',
+            'id'    => $this->title.'_state',
             'type'  => 'text'
-            ),     
+            ),
         array(
-            'label' => 'Medien',
-            'type'  => 'sub'
-            ),   
-        array(
-          'label'  => 'Profilbild',
-          'desc'  => 'Profilbild der Person für die Homepage',
-          'id'    => $this->title.'_profile_pic',
-          'type'  => 'image'
-        )    
-        // array(
-        //   'label'  => 'Hintergrundbild',
-        //   'desc'  => 'Hintergrundbild der Person für die Homepage',
-        //   'id'    => $this->title.'_background_pic',
-        //   'type'  => 'image'
-        // )
+            'label'=> 'Land',
+            'desc'  => '',
+            'id'    => $this->title.'_country',
+            'type'  => 'text'
+            )
       );
     }
   }
