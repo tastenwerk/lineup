@@ -93,7 +93,7 @@ class RepeaterMethods {
   function echo_date_select($field, $meta, $i){
     if( $meta[date] != '' )
       $meta[date] = date( 'd.m.Y', $meta[date] );
-    echo '<input type="text" class="" placeholder="Datum"
+    echo '<input type="text" class="date-selector" placeholder="Datum"
       name="'.$field['id'].'['.$i.'][date]" id="'.$field['id'].'" value="'.$meta[date].'" size="12" />';
   }
 

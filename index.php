@@ -32,15 +32,44 @@ class Plugin{
         new $classname();
       }
     }
-
     add_action( 'init', array( $this, 'add_js_and_css_files' ) );
-    
+
+    add_action( 'wp_ajax_nopriv_ajax_pagination', array( $this,'my_ajax_pagination') );
+    add_action( 'wp_ajax_ajax_pagination', array( $this,'my_ajax_pagination') );
   }
+
+  public function my_ajax_pagination() {
+    // $query_vars = json_decode( stripslashes( $_POST['query_vars'] ), true );
+    // echo get_bloginfo( 'title' );
+    // echo $_POST['query_vars'];
+
+    $post = array(
+      'post_name'      => $_POST['title'],
+      'post_title'     => $_POST['title'],
+      'post_type'      => "lineupevent",
+      'post_status'    => 'publish' 
+    );  
+    
+    $post_id = wp_insert_post( $post );
+    add_post_meta( $post_id, 'lineupevent_email-link', $_POST['email_link'] ); 
+
+    echo get_post_meta( $post_id, 'lineupevent_email-link', TRUE );
+    die();
+  }
+    
 
   public function add_js_and_css_files(){
 
     // add js and css files for custom fields
-    if(is_admin()) {
+    if(is_admin()) { 
+
+      wp_enqueue_script( 'ajax-pagination', plugin_dir_url( __FILE__ ) . 'js/ajax-pagination.js', array( 'jquery' ), '1.0', true );
+      wp_localize_script( 'ajax-pagination', 'ajaxpagination', array(
+        'ajaxurl' => admin_url( 'admin-ajax.php' )
+      ));
+
+
+
       wp_enqueue_style('lineup-theme', plugin_dir_url( __FILE__ ).'css/lineup-theme.css');
       wp_enqueue_style('jquery-ui-theme', plugin_dir_url( __FILE__ ).'css/jquery-ui.theme.min.css');
       wp_enqueue_style('jquery-ui', plugin_dir_url( __FILE__ ).'css/jquery-ui.min.css');

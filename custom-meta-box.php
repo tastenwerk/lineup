@@ -86,23 +86,23 @@
         $temp = array();
         $index = 0;
        // print_r( $field['type'] );
-        if( $field['type'] == 'appointments' ){
-          foreach ($new as $row ) {
+        // if( $field['type'] == 'appointments' ){
+        //   foreach ($new as $row ) {
 
-            $new_row = array();
-            foreach ($row as $key => $value) {
-              $new_row[$key] = $value;
-              if( $key == "date" )
-                $new_row[$key] = strtotime( $value );
-            }
-            // $row = $new_row;
-            // print_r( $row );
-            $temp[$index] = $new_row;
-            $index++;
-          }
-          $new = $temp;
-          // print_r( $temp );
-        }
+        //     $new_row = array();
+        //     foreach ($row as $key => $value) {
+        //       $new_row[$key] = $value;
+        //       if( $key == "date" )
+        //         $new_row[$key] = strtotime( $value );
+        //     }
+        //     // $row = $new_row;
+        //     // print_r( $row );
+        //     $temp[$index] = $new_row;
+        //     $index++;
+        //   }
+        //   $new = $temp;
+        //   // print_r( $temp );
+        // }
         if ($new && $new != $old) {
           update_post_meta($post_id, $field['id'], $new);
           
@@ -150,9 +150,6 @@
         case 'repeatable':
         $this->repeater_methods->echo_repeatable($field, $meta);
         break;
-        case 'appointments':
-        $this->repeater_methods->echo_appointments($field, $meta);
-        break;
         case 'image-repeater':
         $this->repeater_methods->echo_repeatable_image($field, $meta);
         break;
@@ -167,6 +164,11 @@
         break;
         case 'upload':
         $this->main_methods->echo_upload($field, $meta);
+        break;
+        default:
+        // remove last character due to include
+        if( file_exists ( dirname( __FILE__).'/echo-methods/'.$field['type'].'.php' ) )
+          echo substr( require( 'echo-methods/'.$field['type'].'.php' ), 0, -1);
         break;
       }
     }
