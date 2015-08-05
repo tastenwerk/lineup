@@ -34,15 +34,12 @@ class Plugin{
     }
     add_action( 'init', array( $this, 'add_js_and_css_files' ) );
 
-    add_action( 'wp_ajax_nopriv_ajax_pagination', array( $this,'my_ajax_pagination') );
-    add_action( 'wp_ajax_ajax_pagination', array( $this,'my_ajax_pagination') );
+    // add_action( 'wp_ajax_nopriv_post_event', array( $this,'create_or_update_event') );
+    add_action( 'wp_ajax_post_event', array( $this,'create_or_update_event') );
+    add_action( 'wp_ajax_delete_event', array( $this,'delete_event') );
   }
 
-  public function my_ajax_pagination() {
-    // $query_vars = json_decode( stripslashes( $_POST['query_vars'] ), true );
-    // echo get_bloginfo( 'title' );
-    // echo $_POST['query_vars'];
-
+  public function create_or_update_event() {  
     $post = array(
       'post_name'      => $_POST['title'],
       'post_title'     => $_POST['title'],
@@ -50,10 +47,42 @@ class Plugin{
       'post_status'    => 'publish' 
     );  
     
-    $post_id = wp_insert_post( $post );
-    add_post_meta( $post_id, 'lineupevent_email-link', $_POST['email_link'] ); 
+    if( $_POST['id'] && $_POST['id'] !='' ){
+      $post['id'] = $_POST['id'];
+      $post_id = $post['id'];
+      wp_update_post( $post );
 
-    echo get_post_meta( $post_id, 'lineupevent_email-link', TRUE );
+      // update_post_meta( $post_id, 'lineupevent_date', $_POST['date'] ); 
+      // update_post_meta( $post_id, 'lineupevent_time', $_POST['time'] ); 
+
+      update_post_meta( $post_id, 'lineupevent_premiere', $_POST['premiere'] ); 
+      update_post_meta( $post_id, 'lineupevent_derniere', $_POST['derniere'] ); 
+      update_post_meta( $post_id, 'lineupevent_cancelled', $_POST['cancelled'] ); 
+
+      update_post_meta( $post_id, 'lineupevent_email', $_POST['email'] ); 
+      update_post_meta( $post_id, 'lineupevent_phone', $_POST['phone'] ); 
+      update_post_meta( $post_id, 'lineupevent_email-link', $_POST['email_link'] ); 
+
+    } else{
+      $post_id = wp_insert_post( $post );
+
+      add_post_meta( $post_id, 'lineupevent_premiere', $_POST['premiere'] ); 
+      add_post_meta( $post_id, 'lineupevent_derniere', $_POST['derniere'] ); 
+      add_post_meta( $post_id, 'lineupevent_cancelled', $_POST['cancelled'] ); 
+
+      add_post_meta( $post_id, 'lineupevent_email', $_POST['email'] ); 
+      add_post_meta( $post_id, 'lineupevent_phone', $_POST['phone'] ); 
+      add_post_meta( $post_id, 'lineupevent_email-link', $_POST['email_link'] ); 
+    
+    }
+
+    print_r( get_post_meta( $post_id ) );
+    die();
+  }
+
+  public function delete_event() { 
+    echo  $_POST['id'];
+    print_r( wp_delete_post( $_POST['id'] ) );
     die();
   }
     
@@ -63,8 +92,8 @@ class Plugin{
     // add js and css files for custom fields
     if(is_admin()) { 
 
-      wp_enqueue_script( 'ajax-pagination', plugin_dir_url( __FILE__ ) . 'js/ajax-pagination.js', array( 'jquery' ), '1.0', true );
-      wp_localize_script( 'ajax-pagination', 'ajaxpagination', array(
+      wp_enqueue_script( 'ajax-lineup-events', plugin_dir_url( __FILE__ ) . 'js/ajax-lineup-events.js', array( 'jquery' ), '1.0', true );
+      wp_localize_script( 'ajax-lineup-events', 'ajaxpagination', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' )
       ));
 

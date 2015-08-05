@@ -85,3 +85,17 @@ li:first-child .pic-tools span:first-child{
   width: 100px;
   height: 100px;
 }
+
+body .active-button{
+  background: #5CB85C !important;
+  color: #fff !important;
+}
+
+.saved-changes{
+  background-color: #5CB85C;
+  color: #fff;
+  width: 230px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 10px;
+}

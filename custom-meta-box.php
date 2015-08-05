@@ -168,7 +168,7 @@
         default:
         // remove last character due to include
         if( file_exists ( dirname( __FILE__).'/echo-methods/'.$field['type'].'.php' ) )
-          echo substr( require( 'echo-methods/'.$field['type'].'.php' ), 0, -1);
+          echo substr( require( 'echo-methods/'.$field['type'].'.php' ), 0, -3);
         break;
       }
     }
