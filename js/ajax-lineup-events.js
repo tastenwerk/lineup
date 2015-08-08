@@ -1,9 +1,12 @@
 (function($) {
   $(document).on( 'click', '.save-event', function( event ) {
 
+    $(this).closest('li').find('.infos').css('display', 'none');
+    $(this).closest('li').find('.preview').css('display', 'block');
+
     $parent = $(this).closest('li');
 
-    $date = $parent.find('.date').attr('value');
+    $date = $parent.find('.date-selector').attr('value');
     $time = $parent.find('.time').attr('value');
 
     $premiere = $parent.find('.premiere').attr('bool');
@@ -15,7 +18,7 @@
     $email_link = $parent.find('.email-link').attr('value');
     $note = $parent.find('.note').attr('value');
 
-    $venue = $parent.find('.venue-select:selected').text();
+    $venue_id = $parent.find('.venue-select:selected').val();
 
     $ids = $parent.attr('id').split(';');
     if( $ids.length > 1 ){
@@ -30,7 +33,7 @@
       type: 'post',
       data: {
         action: 'post_event',
-        venue: '',
+        venue_id: $venue_id,
         date: $date,
         time: $time,
         premiere: $premiere == 'true' ? true : false,
@@ -89,9 +92,24 @@
       //     return Number(n) + 1;
       //   });
       // });
-      console.log( $location );
+      console.log( $li.find('.venue-select option') );
+
+      console.log( $li.find('.venue-select:selected') );
       $li.insertBefore( $location );
+      $li.find('.infos').css('display', 'block');
+      $li.find('.preview').css('display', 'none');
       return false;
+  })
+
+  $(document).on( 'click', '.edit-date', function( event ) {
+    $(this).closest('li').find('.infos').css('display', 'block');
+    $(this).closest('li').find('.preview').css('display', 'none');
+  })
+
+   $(document).on( 'click', '.venue-select option', function( event ) {
+    $(this).closest('.venue-select').children().prop('selected', false );
+    $(this).attr("selected", "selected");
+    console.log( $(this).closest('.venue-select').children().prop('selected') );
   })
 
   $(document).on( 'click', '.toggle-button', function( event ) {

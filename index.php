@@ -45,15 +45,21 @@ class Plugin{
       'post_title'     => $_POST['title'],
       'post_type'      => "lineupevent",
       'post_status'    => 'publish' 
-    );  
+    );
+
+    echo $_POST['date']."orig\n";
+    $date = strtotime( $_POST['date']." ".$_POST['time'] );
+    echo date( 'd.m.Y H:i', $date )."mv\n";
+    // echo $date;
     
     if( $_POST['id'] && $_POST['id'] !='' ){
       $post['id'] = $_POST['id'];
       $post_id = $post['id'];
       wp_update_post( $post );
 
-      // update_post_meta( $post_id, 'lineupevent_date', $_POST['date'] ); 
-      // update_post_meta( $post_id, 'lineupevent_time', $_POST['time'] ); 
+      update_post_meta( $post_id, 'lineupevent_date', $date ); 
+
+      update_post_meta( $post_id, 'lineupevent_venue_id', $_POST['venue_id'] ); 
 
       update_post_meta( $post_id, 'lineupevent_premiere', $_POST['premiere'] ); 
       update_post_meta( $post_id, 'lineupevent_derniere', $_POST['derniere'] ); 
@@ -66,6 +72,10 @@ class Plugin{
     } else{
       $post_id = wp_insert_post( $post );
 
+      add_post_meta( $post_id, 'lineupevent_date', $date );
+
+      add_post_meta( $post_id, 'lineupevent_venue_id', $_POST['venue_id'] ); 
+
       add_post_meta( $post_id, 'lineupevent_premiere', $_POST['premiere'] ); 
       add_post_meta( $post_id, 'lineupevent_derniere', $_POST['derniere'] ); 
       add_post_meta( $post_id, 'lineupevent_cancelled', $_POST['cancelled'] ); 
@@ -77,6 +87,7 @@ class Plugin{
     }
 
     print_r( get_post_meta( $post_id ) );
+
     die();
   }
 
