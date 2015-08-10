@@ -29,14 +29,10 @@
       $premiere = get_post_meta( $event->ID, 'lineupevent_premiere', TRUE );
       $venue_id = get_post_meta( $event->ID, 'lineupevent_venue_id', TRUE );
       $date = get_post_meta( $event->ID, 'lineupevent_date', TRUE );
-      // echo $venue_id;
-      // echo $event->ID;
       $venue = get_post( $venue_id );
-      // print_r( $venue );
 ?>
 
 <li id='entry=<?= the_ID(); ?>;event=<?= $event->ID ?>' class="event">
-
   <div class="preview">
     <div class="wrapper">
       <div class="calendar">
@@ -44,7 +40,7 @@
         <p class="dayname"><?= date_i18n('D', $date) ?></p>
         <p class="year"><?= date_i18n('Y', $date) ?></p>
       </div>
-      <h3><?= $venue->post_title ?></h3>
+      <h3><?= localize( $venue->post_title ) ?></h3>
       <div class="tools">
         <p class="time"><?= date_i18n('H:i', $date) ?></p>
         <span class="dashicons dashicons-welcome-write-blog edit-date" title="Bearbeiten"></span>
@@ -61,7 +57,8 @@
     <select name="venue-selector" class="venue-select">
       <option value="">Spielort wählen</option>'
       <?php foreach($items as $item) { ?>
-        <option value="<?= $item->ID ?>" selected="<?= $venue_id == $item-> ID ? 'selected': '' ?>"><?= $item->post_title ?></option>
+        <option value="<?= $item->ID ?>" selected="<?= $venue_id == $item-> ID ? 'selected': '' ?>"
+          class="<?= $venue_id == $item-> ID ? 'selected': '' ?>"><?= localize( $item->post_title ) ?></option>
       <?}?>
     </select>      
     <input type="text" class="date-selector" placeholder="Datum" value="<?= date_i18n('d.m.Y', $date) ?>" size="12" />
@@ -72,10 +69,10 @@
     <a class="button toggle-button" bool="false">Abgesagt</a>
     <br>
     <input type="text" value="<?= get_post_meta( $event->ID, 'lineupevent_email', TRUE ) ?>" 
-      class="email" size="22" placeholder="Reservierungen Email" />
+      class="email" placeholder="Reservierungen Email" />
     <br>
     <input type="text" value="<?= get_post_meta( $event->ID, 'lineupevent_phone', TRUE ) ?>" 
-      class="phone" size="22" placeholder="Reservierung Telefon" />
+      class="phone" placeholder="Reservierung Telefon" />
     <br>
     <input type="text" value="<?= get_post_meta( $event->ID, 'lineupevent_email-link', TRUE ) ?>" 
       class="email-link" size="22" placeholder="Reservierungslink" />
@@ -123,7 +120,6 @@
     <input type="text" value="" class="email-link" size="22" placeholder="Reservierungslink" />
     <br>
     <input type="text" value="" class="note" size="22" placeholder="Notiz" />
-    <!-- <a class="remove-event button" href="#">Entfernen</a> -->
     <a class="save-event button button-primary" href="#">Speichern</a>
     <hr>
   </div>

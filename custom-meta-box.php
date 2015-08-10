@@ -2,6 +2,8 @@
 
   namespace Lineup;
 
+  include 'echo-methods/qtrans.php';
+
   include 'echo-methods/main-methods.php';
   include 'echo-methods/repeater-methods.php';
 

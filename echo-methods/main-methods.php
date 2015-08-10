@@ -2,6 +2,8 @@
 
 namespace Lineup;
 
+// include 'qtrans.php';
+
 class MainMethods {
 
   public function echo_upload($field, $meta){
@@ -29,9 +31,9 @@ class MainMethods {
         'posts_per_page' => -1
     ));
     echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
-            <option value="">Select One</option>'; // Select One
+            <option value="">Auswählen</option>'; // Select One
         foreach($items as $item) {
-            echo '<option value="'.$item->ID.'"',$meta == $item->ID ? ' selected="selected"' : '','>'.qtrans_use( qtrans_getLanguage(), $item->post_title,false).'</option>';
+            echo '<option value="'.$item->ID.'"',$meta == $item->ID ? ' selected="selected"' : '','>'.localize( $item->post_title ).'</option>';
         }
     echo '</select><br /><span class="description">'.$field['desc'].'</span>';
   }

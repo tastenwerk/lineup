@@ -47,10 +47,7 @@ class Plugin{
       'post_status'    => 'publish' 
     );
 
-    echo $_POST['date']."orig\n";
     $date = strtotime( $_POST['date']." ".$_POST['time'] );
-    echo date( 'd.m.Y H:i', $date )."mv\n";
-    // echo $date;
     
     if( $_POST['id'] && $_POST['id'] !='' ){
       $post['id'] = $_POST['id'];
@@ -86,14 +83,23 @@ class Plugin{
     
     }
 
-    print_r( get_post_meta( $post_id ) );
+    $venue = get_post( $_POST['venue_id'] );
+
+    $result = array();
+    $result['id'] = $post_id;
+    $result['venue_title'] = $venue->post_title;
+    $result['date'] = date_i18n("d.m", $date);
+    $result['dayname'] = date_i18n("D", $date);
+    $result['year'] = date_i18n("Y", $date);
+    $result['time'] = date_i18n("H:i", $date);
+
+    echo json_encode( $result );
 
     die();
   }
 
   public function delete_event() { 
-    echo  $_POST['id'];
-    print_r( wp_delete_post( $_POST['id'] ) );
+    wp_delete_post( $_POST['id'] );
     die();
   }
     

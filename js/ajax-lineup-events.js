@@ -1,9 +1,5 @@
 (function($) {
   $(document).on( 'click', '.save-event', function( event ) {
-
-    $(this).closest('li').find('.infos').css('display', 'none');
-    $(this).closest('li').find('.preview').css('display', 'block');
-
     $parent = $(this).closest('li');
 
     $date = $parent.find('.date-selector').attr('value');
@@ -47,7 +43,21 @@
         id: $event_id
       },
       success: function( result ) {
-        console.log( result );
+        data = JSON.parse( result );
+
+        // UPDATE ID
+        // TODO
+        // UPDATE PREVIEW
+        $preview = $parent.find('.preview');
+        $preview.find('.date').html( data.date );
+        $preview.find('.time').html( data.time );
+        $preview.find('.dayname').html( data.dayname );
+        $preview.find('.year').html( data.year );
+        $preview.find('h3').html( data.venue_title.split('[:')[1].substring(3) );
+        // HIDE INFOS AND SHOW PREVIEW
+        $parent.find('.infos').css('display', 'none');
+        $parent.find('.preview').css('display', 'block');
+        // SHOW SAVED INFO
         $parent.find('.saved-changes').show();
         setTimeout(function() {
           $parent.find('.saved-changes').hide();
@@ -92,9 +102,9 @@
       //     return Number(n) + 1;
       //   });
       // });
-      console.log( $li.find('.venue-select option') );
+      // console.log( $li.find('.venue-select option') );
 
-      console.log( $li.find('.venue-select:selected') );
+      // console.log( $li.find('.venue-select:selected') );
       $li.insertBefore( $location );
       $li.find('.infos').css('display', 'block');
       $li.find('.preview').css('display', 'none');
@@ -108,7 +118,10 @@
 
    $(document).on( 'click', '.venue-select option', function( event ) {
     $(this).closest('.venue-select').children().removeClass('selected');
+    $(this).closest('.venue-select').children().removeAttr('selected');
     $(this).addClass('selected');
+    $(this).attr('selected', 'selected');
+
     // $(this).closest('.venue-select').children().prop('selected', false );
     // $(this).attr("selected", "selected");
     // console.log( $(this).closest('.venue-select').children().prop('selected') );
