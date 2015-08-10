@@ -147,7 +147,13 @@ body .active-button{
   width: 100%;
 }
 
-.calendar .dayname{
+.event .calendar .dayname{
   font-weight: bold;
   font-size: 16px;
+  height: 17px;
+  padding-bottom: 5px;
+}
+
+.event .calendar .date{
+  margin-bottom: -2px;
 }

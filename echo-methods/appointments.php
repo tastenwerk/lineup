@@ -65,7 +65,7 @@
       <?}?>
     </select>      
     <input type="text" class="date-selector" placeholder="Datum" value="<?= date_i18n('d.m.Y', $date) ?>" size="12" />
-    <input type="text" class="time" size="6" placeholder="Uhrzeit" value="<?= date_i18n('H:i', $date) ?>"/>
+    <input type="text" class="time-selector" size="6" placeholder="Uhrzeit" value="<?= date_i18n('H:i', $date) ?>"/>
     <br>
     <a class="button toggle-button <?= $premiere ? 'active-button' : '' ?>" bool="false">Premiere</a>
     <a class="button toggle-button" bool="false">Derniere</a>
@@ -110,7 +110,7 @@
       <?}?>
     </select>      
     <input type="text" class="date-selector" placeholder="Datum" value="" size="12" />
-    <input type="text" class="time" size="6" placeholder="Uhrzeit" />
+    <input type="text" class="time-selector" size="6" placeholder="Uhrzeit" />
     <br>
     <a class="button toggle-button" bool="false">Premiere</a>
     <a class="button toggle-button" bool="false">Derniere</a>

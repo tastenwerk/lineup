@@ -7,7 +7,7 @@
     $parent = $(this).closest('li');
 
     $date = $parent.find('.date-selector').attr('value');
-    $time = $parent.find('.time').attr('value');
+    $time = $parent.find('.time-selector').attr('value');
 
     $premiere = $parent.find('.premiere').attr('bool');
     $derniere = $parent.find('.derniere').attr('bool');
@@ -18,7 +18,7 @@
     $email_link = $parent.find('.email-link').attr('value');
     $note = $parent.find('.note').attr('value');
 
-    $venue_id = $parent.find('.venue-select:selected').val();
+    $venue_id = $parent.find('.venue-select option.selected').val();
 
     $ids = $parent.attr('id').split(';');
     if( $ids.length > 1 ){
@@ -107,9 +107,11 @@
   })
 
    $(document).on( 'click', '.venue-select option', function( event ) {
-    $(this).closest('.venue-select').children().prop('selected', false );
-    $(this).attr("selected", "selected");
-    console.log( $(this).closest('.venue-select').children().prop('selected') );
+    $(this).closest('.venue-select').children().removeClass('selected');
+    $(this).addClass('selected');
+    // $(this).closest('.venue-select').children().prop('selected', false );
+    // $(this).attr("selected", "selected");
+    // console.log( $(this).closest('.venue-select').children().prop('selected') );
   })
 
   $(document).on( 'click', '.toggle-button', function( event ) {
