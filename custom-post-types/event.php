@@ -23,7 +23,7 @@
           'not_found' => __('No HTML5 Blank Custom Posts found', $this->title),
           'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', $this->title)
           ),
-        'public' => true,
+        'public' => false,
         'hierarchical' => false, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
         'supports' => array(
