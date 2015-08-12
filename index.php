@@ -139,13 +139,13 @@ class Plugin{
       'parent_item_colon'          => null,
       'edit_item'                  => __( 'Label bearbeiten' ),
       'update_item'                => __( 'Label updaten' ),
-      'add_new_item'               => __( 'Add New Writer' ),
-      'new_item_name'              => __( 'New Writer Name' ),
+      'add_new_item'               => __( 'Add New Label' ),
+      'new_item_name'              => __( 'New Label Name' ),
       'separate_items_with_commas' => __( '' ),
-      'add_or_remove_items'        => __( 'Add or remove writers' ),
+      'add_or_remove_items'        => __( 'Add or remove Labels' ),
       'choose_from_most_used'      => __( '' ),
-      'not_found'                  => __( 'No writers found.' ),
-      'menu_name'                  => __( 'Writers' ),
+      'not_found'                  => __( 'No Labels found.' ),
+      'menu_name'                  => __( 'Labels' ),
     );
 
     $args = array(

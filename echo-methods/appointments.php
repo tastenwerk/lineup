@@ -31,7 +31,21 @@
       $date = get_post_meta( $event->ID, 'lineupevent_date', TRUE );
       $venue = get_post( $venue_id );
 ?>
-
+<!-- TODO LABELS
+echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
+    <option value="">Select One</option>'; // Select One
+    $terms = get_terms($field['id'], 'get=all');
+    $selected = wp_get_object_terms($post->ID, $field['id']);
+    foreach ($terms as $term) {
+      if (!empty($selected) && !strcmp($term->slug, $selected[0]->slug)) 
+        echo '<option value="'.$term->slug.'" selected="selected">'.$term->name.'</option>'; 
+      else
+        echo '<option value="'.$term->slug.'">'.$term->name.'</option>'; 
+    }
+    $taxonomy = get_taxonomy($field['id']);
+    echo '</select><br /><span class="description"><a href="'.get_bloginfo('url').'/wp-admin/edit-tags.php?taxonomy='.$field['id'].'">Manage '.$taxonomy->label.'</a></span>';
+ -->
+ 
 <li id='entry=<?= the_ID(); ?>;event=<?= $event->ID ?>' class="event">
   <div class="preview">
     <div class="wrapper">
