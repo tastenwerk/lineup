@@ -34,9 +34,9 @@
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
-          // 'people',
+          'label',
           // 'person',
-          'category'
+          // 'category'
         ) // Add Category and Post Tags support
         ));
 

@@ -129,6 +129,37 @@ class Plugin{
     global $wp_rewrite;
     $wp_rewrite->flush_rules( TRUE );
 
+    $labels = array(
+      'name'                       => _x( 'Labels', 'taxonomy general name' ),
+      'singular_name'              => _x( 'Label', 'taxonomy singular name' ),
+      'search_items'               => __( 'Labels suchen' ),
+      'popular_items'              => __( 'Meistverwendete Lables' ),
+      'all_items'                  => __( 'Alle Labes' ),
+      'parent_item'                => null,
+      'parent_item_colon'          => null,
+      'edit_item'                  => __( 'Label bearbeiten' ),
+      'update_item'                => __( 'Label updaten' ),
+      'add_new_item'               => __( 'Add New Writer' ),
+      'new_item_name'              => __( 'New Writer Name' ),
+      'separate_items_with_commas' => __( '' ),
+      'add_or_remove_items'        => __( 'Add or remove writers' ),
+      'choose_from_most_used'      => __( '' ),
+      'not_found'                  => __( 'No writers found.' ),
+      'menu_name'                  => __( 'Writers' ),
+    );
+
+    $args = array(
+      'hierarchical'          => false,
+      'labels'                => $labels,
+      'show_ui'               => true,
+      'show_admin_column'     => true,
+      'update_count_callback' => '_update_post_term_count',
+      'query_var'             => true,
+      'rewrite'               => array( 'slug' => 'label' ),
+    );
+
+    register_taxonomy( 'label', 'lineupentry', $args );
+
   }
 
 }

@@ -44,9 +44,10 @@
       },
       success: function( result ) {
         data = JSON.parse( result );
-
         // UPDATE ID
-        // TODO
+        $parent.attr('id', function(index, name){
+          return name.replace(/;$/, ';event='+data.id );
+        });
         // UPDATE PREVIEW
         $preview = $parent.find('.preview');
         $preview.find('.date').html( data.date );
@@ -92,20 +93,17 @@
   $(document).on( 'click', '.add-event', function( event ) {
       $li = $(this).next().find('li:first').clone(true);
       $location = $(this).next().find('li:first');
-      // console.log( $li );
+      // RESET ALL VALUES
       $('input', $li ).val('').attr('value', ''); 
       $li.attr('id', function(index, name){
         return name.replace(/;.*=\d*$/, ';');
       });
-      // $('input', field ).val('').attr('value', function(index, name) {
-      //   return name.replace(/(\d+)/, function(fullMatch, n) {
-      //     return Number(n) + 1;
-      //   });
-      // });
-      // console.log( $li.find('.venue-select option') );
-
-      // console.log( $li.find('.venue-select:selected') );
+      $('.toggle-button', $li ).attr('bool', 'false' );
+      $('.toggle-button', $li ).removeClass('active-button');
+      $li.find('.venue-select').children().removeClass('selected');
+      $li.find('.venue-select').children().removeAttr('selected');
       $li.insertBefore( $location );
+      // DISPLAY INFOS
       $li.find('.infos').css('display', 'block');
       $li.find('.preview').css('display', 'none');
       return false;
@@ -121,10 +119,6 @@
     $(this).closest('.venue-select').children().removeAttr('selected');
     $(this).addClass('selected');
     $(this).attr('selected', 'selected');
-
-    // $(this).closest('.venue-select').children().prop('selected', false );
-    // $(this).attr("selected", "selected");
-    // console.log( $(this).closest('.venue-select').children().prop('selected') );
   })
 
   $(document).on( 'click', '.toggle-button', function( event ) {
