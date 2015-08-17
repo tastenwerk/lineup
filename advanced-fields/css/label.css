@@ -1,4 +1,4 @@
-.label-taxonomys .color{
+.label-taxonomys .color, .label-overlay .color{
   background-color: red;
   height: 20px;
   width: 20px;
@@ -14,7 +14,7 @@
   float: right;
 }
 
-.remove-label:hover, .add-label:hover{
+.remove-label:hover, .add-label:hover, .close-label:hover{
   cursor: pointer;
 }
 
@@ -30,6 +30,63 @@
   border-radius: 5px;
   padding: 0 6px;
   margin-right: 3px;
-  /*min-width: 70px;*/
-  /*display: inline-block;*/
+}
+
+.label-overlay{
+  display: none;
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(100, 100, 100, 0.8); 
+}
+
+.label-dialog{
+  width: 400px;
+  margin: auto;
+  background-color: #FFFFFF;
+  margin-top: 100px;
+  padding: 0 10px 10px;
+  height: 200px;
+}
+
+.create-label{
+  /*float: right;*/
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.close-label{
+  float: right;
+  margin: 5px;
+}
+
+.colors{
+  margin-left: 10px;
+}
+
+#label-preview{
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0 6px;
+}
+
+.label-preview{
+  /*text-align: center;*/
+  position: relative;
+  height: 80%;
+}
+
+
+.label-data{
+  float: left;
+  margin-right: 20px;
+}
+
+body #poststuff .label-dialog h2{
+  padding: 10px 0 0;
+  margin: 0;
 }

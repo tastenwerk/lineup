@@ -127,7 +127,7 @@ echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
 
   <div class="preview" style="display: none;">
     <p>date</p>
-    <h3> Spielort 
+    <h3> Spielort </h3>
     <span class="dashicons dashicons-welcome-write-blog edit-date"></span></h3>
     <div class="saved-changes" style="display: none;" > Änderungen gespeichert </div>
     <hr>

@@ -26,3 +26,50 @@
   <?php } ?>
   </div>
 </div>
+
+
+<?php
+  $colors = array(
+    "background-color: white; border: 1px solid black;",
+    "background-color: red; border: 1px solid red;",
+    "background-color: green;  border: 1px solid green;",
+    "background-color: yellow;  border: 1px solid yellow;",
+    "background-color: blue;  border: 1px solid blue;",
+  );
+?>
+
+
+<div class="label-overlay">
+  <div class="label-dialog">
+    <h2><?= __("Neues Label anlegen") ?>
+      <span class="dashicons dashicons-no close-label"></span>
+    </h2>
+    <hr>
+    <div class="label-data">
+      
+      <input placeholder="Name"/>
+      <h3>
+        Hintergrundfarbe:
+      </h3>
+      <div class="colors">
+      <?php foreach ( $colors as $color ){ ?>
+        <span class="color" style="<?= $color ?>"></span>
+      <?php } ?>
+      </div>
+      <br>
+      <h3>
+        Textfarbe:
+      </h3>
+      <div class="colors">
+      <?php foreach ( $colors as $color ){ ?>
+        <span class="color" style="<?= $color ?>"></span>
+      <?php } ?>
+      </div>
+    </div>
+    <div class="label-preview">
+      <h3>Vorschau:</h3>
+      <span id="label-preview">Label</span>
+      <a class="create-label button button-primary" href="#">Speichern</a>
+    </div>
+  </div>
+</div>
