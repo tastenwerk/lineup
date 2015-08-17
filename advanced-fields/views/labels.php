@@ -18,10 +18,12 @@
   <span class="dashicons dashicons-plus add-label"></span>
   <ul>
   <?php foreach ($terms as $term) {?>
-    <li>
+    <li class="available-label">
+      <div class="highlight"></div>
       <span class="color"></span>
       <span class="name"><?= $term->name ?></span>
       <span class="dashicons dashicons-trash remove-label" title="Löschen"></span>
+      <span class="dashicons dashicons-edit edit-label" title="Bearbeiten"></span>
     </li>
   <?php } ?>
   </div>
@@ -45,9 +47,8 @@
       <span class="dashicons dashicons-no close-label"></span>
     </h2>
     <hr>
+    <input type="text" class="label-name" placeholder="Name" size="12"/>
     <div class="label-data">
-      
-      <input placeholder="Name"/>
       <h3>
         Hintergrundfarbe:
       </h3>

@@ -6,16 +6,30 @@
   margin-right: 5px;
 }
 
-.remove-label{
+.remove-label, .edit-label, .add-label{
   float: right;
 }
 
-.add-label{
-  float: right;
-}
-
-.remove-label:hover, .add-label:hover, .close-label:hover{
+.remove-label:hover, .add-label:hover, .close-label:hover, .edit-label:hover{
   cursor: pointer;
+}
+
+.available-label:hover .highlight{
+  cursor: pointer;
+  background-color: rgba(100, 100, 100, 0.6); 
+  width: 190px;
+  position: absolute;
+  height: 20px;
+  margin-left: 22px;
+}
+
+.available-label:hover .name{
+  color: black;
+}
+
+
+.available-label{
+  position: relative;
 }
 
 .current-labels{
