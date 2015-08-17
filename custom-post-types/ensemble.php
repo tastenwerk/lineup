@@ -18,7 +18,7 @@
           'edit' => __('Edit', $this->title),
           'edit_item' => __('Ensemble bearbeiten', $this->title),
           'new_item' => __('New HTML5 Blank Custom Post', $this->title),
-          'view' => __('View HTML5 Blank Custom Post', $this->title),
+          'view' => __('View HTML5 Blank Custom Post', 'mezz'),
           'view_item' => __('View HTML5 Blank Custom Post', $this->title),
           'search_items' => __('Search HTML5 Blank Custom Post', $this->title),
           'not_found' => __('No HTML5 Blank Custom Posts found', $this->title),
@@ -37,7 +37,8 @@
         'taxonomies' => array(
           // 'post_tag',
           'category'
-        ) // Add Category and Post Tags support
+        ), // Add Category and Post Tags support,
+        'menu_icon' => 'dashicons-groups'    
         ));
 
     }

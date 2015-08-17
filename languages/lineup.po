@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Lineup 0.0.0\n"
+"POT-Creation-Date: 2015-08-01 00:26+0100\n"
+"PO-Revision-Date: 2015-08-17 11:34+0100\n"
+"Last-Translator: david\n"
+"Language-Team: TASTENWERK\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+
+#: ../searchform.php:4
+msgid "View HTML5 Blank Custom Post"
+msgstr "Anzeigen"
+
+#~ msgid "%s results for "
+#~ msgstr "%s Ergebnisse fr "

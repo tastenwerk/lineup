@@ -36,8 +36,9 @@
         'taxonomies' => array(
           // 'post_tag',
           'category'
-        ) // Add Category and Post Tags support
-        ));
+        ),
+        'menu_icon' => 'dashicons-groups'        
+      ));
     }
     
     public function init_array(){

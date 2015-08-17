@@ -32,7 +32,8 @@
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
           'post_tag'
-        ) // Add Category and Post Tags support
+        ),
+        // 'menu_icon' => ''
         ));
 
     }

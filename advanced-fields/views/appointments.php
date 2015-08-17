@@ -1,5 +1,6 @@
 <a class="add-event button" href="#">Neuen Termin anlegen</a>
 <ul id="'.$field['id'].'-repeatable" class="events"> 
+
 <hr>
 
 <?php $events = get_posts( array (
@@ -7,16 +8,7 @@
     'post_title' => 'entry_id='.get_the_ID(),
     'meta_key' => 'lineupevent_date',
     'orderby' => 'meta_value',
-    'order' => 'ASC',
-    // 'meta_query' => array(
-    //     array(
-    //        'key' => 'mydate',
-    //        'meta-value' => $value,
-    //        'value' => $today,
-    //        'compare' => '>=',
-    //        'type' => 'CHAR'
-    //    )
-    // )
+    'order' => 'ASC'
   ));
 
   $items = get_posts( array (

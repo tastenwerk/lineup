@@ -33,21 +33,19 @@ class Plugin{
       }
     }
     add_action( 'init', array( $this, 'add_js_and_css_files' ) );
+    add_action('init', array( $this, 'add_lineup_languages') );
 
-    // add_action( 'wp_ajax_nopriv_post_event', array( $this,'create_or_update_event') );
     add_action( 'wp_ajax_post_event', array( $this,'create_or_update_event') );
     add_action( 'wp_ajax_delete_event', array( $this,'delete_event') );
-
-
-
-    
-
     // add_action( 'init' , array( $this, 'remove_label_meta' ) );
+  }
+
+  public function add_lineup_languages() {
+    load_plugin_textdomain( 'lineup', false, 'lineup/languages' );
   }
 
   public function remove_label_meta() {
     // if ( is_admin() )
-    echo "here";
       \remove_meta_box( 'tagsdiv-label', 'lineupentry', 'side' );
   }
 

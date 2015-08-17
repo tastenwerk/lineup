@@ -31,6 +31,7 @@
           'editor'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
+        'menu_icon' => 'dashicons-admin-home',
         'taxonomies' => array(
           // 'post_tag'
         ) // Add Category and Post Tags support
