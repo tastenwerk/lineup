@@ -37,6 +37,18 @@ class Plugin{
     // add_action( 'wp_ajax_nopriv_post_event', array( $this,'create_or_update_event') );
     add_action( 'wp_ajax_post_event', array( $this,'create_or_update_event') );
     add_action( 'wp_ajax_delete_event', array( $this,'delete_event') );
+
+
+
+    
+
+    // add_action( 'init' , array( $this, 'remove_label_meta' ) );
+  }
+
+  public function remove_label_meta() {
+    // if ( is_admin() )
+    echo "here";
+      \remove_meta_box( 'tagsdiv-label', 'lineupentry', 'side' );
   }
 
   public function create_or_update_event() {  
@@ -156,6 +168,7 @@ class Plugin{
       'update_count_callback' => '_update_post_term_count',
       'query_var'             => true,
       'rewrite'               => array( 'slug' => 'label' ),
+      // 'show_ui'                 => false,
     );
 
     register_taxonomy( 'label', 'lineupentry', $args );
@@ -163,7 +176,6 @@ class Plugin{
   }
 
 }
-
 
 
 $lineup_plugin = new Plugin();
