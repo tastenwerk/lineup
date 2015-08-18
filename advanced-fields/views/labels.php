@@ -10,7 +10,9 @@
     <?php foreach ( $terms as $label ) { 
       $meta = get_option( 'custom_taxonomy_meta_'.$label->term_id ); ?>
       <span class="current-label" term-id=<?= $label->term_id ?> 
-        style="background-color: <?= $meta['background-color'] ?>; 
+        style="background-color: <?= $meta['background-color'] ?>;  
+          border-color: <?= $meta['border-color'] ?>;
+          color: <?= $meta['text-color'] ?>;
           display: <?= in_array( $label->term_id, $selected ) ? 'inline-block' : none ?> ">
         <?= $label->name ?>
       </span>

@@ -42,8 +42,8 @@ jQuery(function($) {
         action: 'post_label',
         title: $('.label-name').val(),
         background_color: $('.color-background[selected=selected]').css('background-color'),
-        text_color: $('.color-border[selected=selected]').css('background-color'),
-        border_color: $('.color-text[selected=selected]').css('background-color')
+        text_color: $('.color-text[selected=selected]').css('background-color'),
+        border_color: $('.color-border[selected=selected]').css('background-color')
       },
       success: function( result ) {
         location.reload();
