@@ -8,20 +8,34 @@ class Label{
     add_action( 'init', array( $this, 'register_label_taxonomy' ) );
     add_action( 'wp_ajax_post_label', array( $this,'create_or_update_label') );
     add_action( 'wp_ajax_delete_label', array( $this,'delete_label') );
+    add_action( 'wp_ajax_toggle_label', array( $this,'toggle_label') );
     // add_action( 'init' , array( $this, 'remove_label_meta' ) );
   }
 
   public function create_or_update_label() {  
-    echo $_POST['title'];
     $meta = array();
-    $meta['test'] = sanitize_text_field( "hello world");
+    $meta['background-color'] = $_POST['background_color'];
+    $meta['text-color'] = $_POST['text_color'];
+    $meta['border-color'] = $_POST['border_color'];
     $termId = wp_insert_term( $_POST['title'], 'label' )['term_id'];
     update_option( 'custom_taxonomy_meta_'.$termId, $meta );
-    print_r( get_option( 'custom_taxonomy_meta_'.$termId ) );
   }
 
   public function delete_label() {  
+    wp_delete_term( $_POST['term_id'], 'label' );
+  }
 
+  public function toggle_label() {  
+    $selected = wp_get_object_terms( $_POST['post_id'], 'label');
+    $add = true;
+    foreach ( $selected as $label ) {
+      if( $label->term_id == $_POST['term_id'] )
+        $add = false;
+    }
+    if( $add )
+      wp_add_object_terms( $_POST['post_id'], $_POST['term_name'], 'label' );
+    else
+      wp_remove_object_terms( $_POST['post_id'], $_POST['term_name'], 'label' );
   }
 
   public function localize_script(){

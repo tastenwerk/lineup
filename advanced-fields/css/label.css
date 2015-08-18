@@ -1,5 +1,5 @@
 .label-taxonomys .color, .label-overlay .color{
-  background-color: red;
+  /*background-color: red;*/
   height: 20px;
   width: 20px;
   float: left;
@@ -10,7 +10,7 @@
   float: right;
 }
 
-.remove-label:hover, .add-label:hover, .close-label:hover, .edit-label:hover{
+.remove-label:hover, .add-label:hover, .close-label:hover, .edit-label:hover, .color:hover{
   cursor: pointer;
 }
 
@@ -36,8 +36,8 @@
   margin-bottom: 10px;
 }
 
-.current-labels div{
-  margin-bottom: 5px;
+.current-labels{
+  margin-top: 5px;
 }
 
 .current-label{
@@ -63,14 +63,18 @@
   background-color: #FFFFFF;
   margin-top: 100px;
   padding: 0 10px 10px;
-  height: 200px;
+  height: 220px;
+  position: relative;
 }
 
-.create-label{
-  /*float: right;*/
+.create-label {
+  bottom: -2px;
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  right: -30px;
+}
+
+.label-preview input{
+  margin-left: 10px;
 }
 
 .close-label{
@@ -86,21 +90,29 @@
   border: 1px solid black;
   border-radius: 5px;
   padding: 0 6px;
+  margin-left: 11px;
 }
 
-.label-preview{
-  /*text-align: center;*/
-  position: relative;
-  height: 80%;
+.label-preview {
+  height: 160px;
+  left: 218px;
+  padding-left: 20px;
+  position: absolute;
+  top: 55px;
 }
 
 
 .label-data{
-  float: left;
+  /*float: left;*/
   margin-right: 20px;
 }
 
 body #poststuff .label-dialog h2{
   padding: 10px 0 0;
   margin: 0;
+}
+
+.color[selected=selected]{
+  box-shadow: 0 0 7px #000;
+  border: none !important;
 }
