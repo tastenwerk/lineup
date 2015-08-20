@@ -17,7 +17,17 @@ class Label{
     $meta['background-color'] = $_POST['background_color'];
     $meta['text-color'] = $_POST['text_color'];
     $meta['border-color'] = $_POST['border_color'];
-    $termId = wp_insert_term( $_POST['title'], 'label' )['term_id'];
+    if( $_POST['term_id'] && $_POST['term_id'] != ""  ){
+      $termId = wp_update_term( $_POST['term_id'], 'label', array(
+        'name' => $_POST['title'],
+        'slug' => $_POST['title']
+      ))['term_id'];
+    }
+    else
+      $termId = wp_insert_term( $_POST['title'], 'label', array(
+        'name' => $_POST['title'],
+        'slug' => $_POST['title']
+      ))['term_id'];
     update_option( 'custom_taxonomy_meta_'.$termId, $meta );
   }
 

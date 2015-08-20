@@ -16,28 +16,21 @@
     'posts_per_page' => -1
   ));
 
+
+  $terms = get_terms( 'label', 'get=all');
+
   if( sizeof( $events ) > 0 ){ 
     foreach ($events as $index => $event ) {
       $premiere = get_post_meta( $event->ID, 'lineupevent_premiere', TRUE );
       $venue_id = get_post_meta( $event->ID, 'lineupevent_venue_id', TRUE );
       $date = get_post_meta( $event->ID, 'lineupevent_date', TRUE );
       $venue = get_post( $venue_id );
+
+      $selected = wp_get_object_terms( $event->ID, 'label' );
+      $selected_id = array_map( function( $term ){
+          return $term->term_id;
+        }, wp_get_object_terms($event->ID, 'label') );
 ?>
-<!-- TODO LABELS
-echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
-    <option value="">Select One</option>'; // Select One
-    $terms = get_terms($field['id'], 'get=all');
-    $selected = wp_get_object_terms($post->ID, $field['id']);
-    foreach ($terms as $term) {
-      if (!empty($selected) && !strcmp($term->slug, $selected[0]->slug)) 
-        echo '<option value="'.$term->slug.'" selected="selected">'.$term->name.'</option>'; 
-      else
-        echo '<option value="'.$term->slug.'">'.$term->name.'</option>'; 
-    }
-    $taxonomy = get_taxonomy($field['id']);
-    echo '</select><br /><span class="description"><a href="'.get_bloginfo('url').'/wp-admin/edit-tags.php?taxonomy='.$field['id'].'">Manage '.$taxonomy->label.'</a></span>';
- -->
- 
 <li id='entry=<?= the_ID(); ?>;event=<?= $event->ID ?>' class="event">
   <div class="preview">
     <div class="wrapper">
@@ -51,6 +44,16 @@ echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
         <p class="time"><?= date_i18n('H:i', $date) ?></p>
         <span class="dashicons dashicons-welcome-write-blog edit-date" title="Bearbeiten"></span>
         <span class="dashicons dashicons-trash remove-event" title="Löschen"></span>
+        <?php foreach ( $terms as $label ) { 
+          $meta = get_option( 'custom_taxonomy_meta_'.$label->term_id ); ?>
+          <span class="current-label" term-id=<?= $label->term_id ?> 
+            style="background-color: <?= $meta['background-color'] ?>;  
+              border-color: <?= $meta['border-color'] ?>;
+              color: <?= $meta['text-color'] ?>;
+              display: <?= in_array( $label->term_id, $selected_id ) ? 'inline-block' : none ?> ">
+            <?= $label->name ?>
+          </span>
+        <?php } ?>
       </div>
     </div>
     <div class="saved-changes" style="display: none;" > Änderungen gespeichert </div>
@@ -84,28 +87,20 @@ echo '<select name="'.$field['id'].'" id="'.$field['id'].'">
       class="email-link" size="22" placeholder="Reservierungslink" />
     <br>
     <input type="text" value="<?= get_post_meta( $event->ID, 'lineupevent_note', TRUE ) ?>" 
-      class="note" size="22" placeholder="Notiz" />
+      class="note" size="25" placeholder="Notiz" />
 
-    <select name="'.$field['id'].'" id="'.$field['id'].'">
-      <option value=""> Auswählen </option>
+    <span class="label-text">Label:</span>
+    <select class="label-select" id='<?= $post->ID.$event->ID ?>_labels'>
+      <option value=""> Keine </option>
       <?php 
-        $terms = get_terms( 'label', 'get=all');
-        // $selected = wp_get_object_terms($post->ID, 'label');
         foreach ($terms as $term) {
           if (!empty($selected) && !strcmp($term->slug, $selected[0]->slug)){ 
       ?>
-        <option value="<?= $term->slug ?>" selected="selected"><?= $term->name ?></option>
+        <option value="<?= $term->slug ?>" term-id="<?= $term->term_id ?>" selected="selected"><?= $term->name ?></option>
       <?php }else{ ?>
-        <option value="<?= $term->slug ?>"><?= $term->name ?></option> 
-      <?php } }
-        $taxonomy = get_taxonomy( 'label' );
-      ?>
+        <option value="<?= $term->slug ?>" term-id="<?= $term->term_id ?>" ><?= $term->name ?></option> 
+      <?php } } ?>
     </select><br>
-    <span class="description">
-      <a href="<?= get_bloginfo('home').'/wp-admin/edit-tags.php?taxonomy=label'?>">
-        Manage <?= $taxonomy->label ?>
-      </a>
-    </span>
 
     <a class="remove-event button" href="#">Entfernen</a>
     <a class="save-event button button-primary" href="#">Speichern</a>

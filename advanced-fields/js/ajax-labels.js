@@ -1,7 +1,9 @@
 jQuery(function($) {
+
   $(document).on( 'click', '.add-label', function( event ) {
     $('.label-overlay').css('display', 'block');
     $('#label-preview').html( "Label" );
+    $('.label-dialog').attr('term-id', "" );
   });  
 
   $(document).on( 'click', '.close-label', function( event ) {
@@ -20,15 +22,15 @@ jQuery(function($) {
         term_id: $parent.attr('term-id')
       },
       success: function( result ) {
-        $cur_label = $('.current-label[term-id='+$parent.attr('term-id')+']' );
+        $cur_label = $('.label-taxonomys .current-label[term-id='+$parent.attr('term-id')+']' );
         if( $cur_label.css('display') == 'none' )
           $cur_label.css('display', 'inline-block');
         else
           $cur_label.css('display', 'none');
-        if( $('.current-label:visible').length == 0 )
-          $('.current-labels p').css('display', 'block');
+        if( $('.label-taxonomys .current-label:visible').length == 0 )
+          $('.label-taxonomys .current-labels p').css('display', 'block');
         else
-          $('.current-labels p').css('display', 'none');
+          $('.label-taxonomys .current-labels p').css('display', 'none');
 
       }
     });
@@ -43,7 +45,8 @@ jQuery(function($) {
         title: $('.label-name').val(),
         background_color: $('.color-background[selected=selected]').css('background-color'),
         text_color: $('.color-text[selected=selected]').css('background-color'),
-        border_color: $('.color-border[selected=selected]').css('background-color')
+        border_color: $('.color-border[selected=selected]').css('background-color'),
+        term_id: $('.label-dialog').attr('term-id')
       },
       success: function( result ) {
         location.reload();
@@ -51,8 +54,18 @@ jQuery(function($) {
     });
   });
 
+
+
+  $(document).on( 'click', '.edit-label', function( event ) {
+    $parent = $(this).closest('li');
+    $('#label-preview').html( $parent.find('.name').html() );
+    $('.label-name').html( $parent.find('.name').html() );
+    $('.label-dialog').attr('term-id', $parent.attr('term-id') );
+    $('.label-overlay').css('display', 'block');
+  });
+
   $(document).on( 'click', '.remove-label', function( event ) {   
-    id = $parent = $(this).closest('li');
+    $parent = $(this).closest('li');
     $.ajax({
       url: ajaxpagination.ajaxurl,
       type: 'post',
@@ -64,7 +77,7 @@ jQuery(function($) {
         $('.current-label[term-id='+$parent.attr('term-id')+']' ).remove();
         $parent.remove();
         if( $('.current-label:visible').length == 0 )
-          $('.current-labels p').css('display', 'block');
+          $('.label-taxonomys .current-labels p').css('display', 'block');
       }
     })
   });

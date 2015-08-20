@@ -30,7 +30,9 @@
   ?>
     <li class="available-label" term-id=<?= $term->term_id ?> term-name=<?= $term->name ?> >
       <div class="highlight" title="Labeln / Entlabeln"></div>
-      <span class="color" style="background-color: <?= $meta['background-color'] ?>;"></span>
+      <span class="color" style="
+        background-color: <?= $meta['background-color'] ?>; 
+        border-color: <?= $meta['border-color'] ?>;"></span>
       <span class="name" ><?= $term->name ?></span>
       <span class="dashicons dashicons-trash remove-label" title="Löschen"></span>
       <span class="dashicons dashicons-edit edit-label" title="Bearbeiten"></span>
@@ -55,7 +57,7 @@
 
 
 <div class="label-overlay">
-  <div class="label-dialog">
+  <div class="label-dialog" term-id="" >
     <h2><?= __("Neues Label anlegen") ?>
       <span class="dashicons dashicons-no close-label"></span>
     </h2>

@@ -44,6 +44,7 @@
   border-radius: 5px;
   padding: 0 6px;
   margin-right: 3px;
+  border: 1px solid white;
 }
 
 .label-overlay{
@@ -115,4 +116,8 @@ body #poststuff .label-dialog h2{
 .color[selected=selected]{
   box-shadow: 0 0 7px #000;
   border: none !important;
+}
+
+.available-label .color{
+  border: 1px solid white;
 }

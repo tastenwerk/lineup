@@ -1,4 +1,5 @@
 (function($) {
+
   $(document).on( 'click', '.save-event', function( event ) {
     $parent = $(this).closest('li');
 
@@ -16,6 +17,12 @@
 
     $venue_id = $parent.find('.venue-select option.selected').val();
 
+    $label = $parent.find('.label-select option:selected');
+
+    $parent.find('.current-label').css('display', 'none');
+    $current_label = $parent.find('.current-label[term-id='+$label.attr('term-id')+']' );
+    $current_label.css('display', 'inline-block');
+    console.log( $label.val() ? $label.val() : false );
     $ids = $parent.attr('id').split(';');
     if( $ids.length > 1 ){
       $entry_id = $ids[0].split('=')[1];
@@ -40,7 +47,8 @@
         email_link: $email_link,
         note: $note,
         title: 'entry_id='+$entry_id,
-        id: $event_id
+        id: $event_id,
+        label: $label.val() ? $label.val() : false
       },
       success: function( result ) {
         data = JSON.parse( result );
@@ -110,6 +118,8 @@
   })
 
   $(document).on( 'click', '.edit-date', function( event ) {
+    $('li .preview').css('display', 'block');
+    $('li .infos').css('display', 'none');
     $(this).closest('li').find('.infos').css('display', 'block');
     $(this).closest('li').find('.preview').css('display', 'none');
   })
@@ -118,6 +128,12 @@
     $(this).closest('.venue-select').children().removeClass('selected');
     $(this).closest('.venue-select').children().removeAttr('selected');
     $(this).addClass('selected');
+    $(this).attr('selected', 'selected');
+  })
+
+
+  $(document).on( 'click', '.label-select option', function( event ) {
+    $(this).closest('.label-select').children().removeAttr('selected');
     $(this).attr('selected', 'selected');
   })
 

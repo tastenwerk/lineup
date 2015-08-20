@@ -85,3 +85,11 @@ body .active-button{
 .event .calendar .date{
   margin-bottom: -2px;
 }
+
+.label-text{
+  font-weight: bold;
+}
+
+.events li{
+  min-height: 90px;
+}

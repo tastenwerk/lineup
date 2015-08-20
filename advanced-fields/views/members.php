@@ -15,7 +15,7 @@ if ($meta) {
     <option value=""> Auswählen </option>
   <?php foreach($items as $item) { ?>
     <option value="<?= $item->ID ?>" <?= $row[0] == $item->ID ? ' selected="selected"' : '' ?> >
-      <?= $item->post_title ?>
+      <?= localize( $item->post_title ) ?>
     </option>
   <?php  } ?>
   </select>

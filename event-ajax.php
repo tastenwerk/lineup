@@ -53,6 +53,13 @@ class EventAjax{
     
     }
 
+    if( $_POST['label'] != 'false' )
+      wp_set_post_terms( $post_id, $_POST['label'], 'label' );
+    else{
+      $term = wp_get_object_terms( $post_id, 'label')[0]->name;
+      wp_remove_object_terms( $post_id, $term, 'label' );
+    }
+
     $venue = get_post( $_POST['venue_id'] );
 
     $result = array();
