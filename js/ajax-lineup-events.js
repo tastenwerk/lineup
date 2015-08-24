@@ -17,6 +17,7 @@
 
     $venue_id = $parent.find('.venue-select option.selected').val();
 
+    console.log( $venue_id );
     $label = $parent.find('.label-select option:selected');
 
     $parent.find('.current-label').css('display', 'none');
@@ -62,7 +63,7 @@
         $preview.find('.time').html( data.time );
         $preview.find('.dayname').html( data.dayname );
         $preview.find('.year').html( data.year );
-        $preview.find('h3').html( data.venue_title.split('[:')[1].substring(3) );
+        $preview.find('h3').html( $parent.find('.venue-select option.selected').html() );
         // HIDE INFOS AND SHOW PREVIEW
         $parent.find('.infos').css('display', 'none');
         $parent.find('.preview').css('display', 'block');

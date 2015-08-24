@@ -11,7 +11,7 @@
       $this->working_dir = preg_replace( '/\/boxes$/', '', dirname( __FILE__));
       $this->fields_array = array(
          array(
-          'id'    => $this->title.'_members',
+          'id'    => 'lineupentry_members',
           'type'  => 'members'
         )
       );

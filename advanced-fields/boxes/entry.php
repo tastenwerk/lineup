@@ -85,7 +85,7 @@
           'label'=> 'Downloads',
           'desc'  => '',
           'id'    => $this->title.'_downloads',
-          'type'  => 'upload'
+          'type'  => 'uploads'
         )
       );
     }
