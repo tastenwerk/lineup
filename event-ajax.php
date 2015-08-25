@@ -26,6 +26,7 @@ class EventAjax{
 
       update_post_meta( $post_id, 'lineupevent_date', $date ); 
 
+      update_post_meta( $post_id, 'lineupevent_entry_id', split( '=', $_POST['title'])[1] ); 
       update_post_meta( $post_id, 'lineupevent_venue_id', $_POST['venue_id'] ); 
 
       update_post_meta( $post_id, 'lineupevent_premiere', $_POST['premiere'] ); 
@@ -41,6 +42,7 @@ class EventAjax{
 
       add_post_meta( $post_id, 'lineupevent_date', $date );
 
+      add_post_meta( $post_id, 'lineupevent_entry_id', split( '=', $_POST['title'])[1] ); 
       add_post_meta( $post_id, 'lineupevent_venue_id', $_POST['venue_id'] ); 
 
       add_post_meta( $post_id, 'lineupevent_premiere', $_POST['premiere'] ); 

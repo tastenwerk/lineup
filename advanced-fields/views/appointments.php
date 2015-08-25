@@ -3,9 +3,16 @@
 
 <hr>
 
-<?php $events = get_posts( array (
+<?php 
+  $events = get_posts( array (
     'post_type' => 'lineupevent',
-    'post_title' => 'entry_id='.get_the_ID(),
+    // 'post_title' => 'entry_id='.get_the_ID(),
+    'meta_query' => array(
+        array(
+          'value' => get_the_ID(),
+          'key' => 'lineupevent_entry_id'
+        ),
+    ),
     'meta_key' => 'lineupevent_date',
     'orderby' => 'meta_value',
     'order' => 'ASC'
@@ -16,12 +23,19 @@
     'posts_per_page' => -1
   ));
 
+  // print_r( $events );
 
   $terms = get_terms( 'label', 'get=all');
 
   if( sizeof( $events ) > 0 ){ 
     foreach ($events as $index => $event ) {
+
+      // print_r( get_post_meta( $event->ID ) );
+
       $premiere = get_post_meta( $event->ID, 'lineupevent_premiere', TRUE );
+      $derniere = get_post_meta( $event->ID, 'lineupevent_derniere', TRUE );
+      $cancelled = get_post_meta( $event->ID, 'lineupevent_cancelled', TRUE );
+
       $venue_id = get_post_meta( $event->ID, 'lineupevent_venue_id', TRUE );
       $date = get_post_meta( $event->ID, 'lineupevent_date', TRUE );
       $venue = get_post( $venue_id );
@@ -39,7 +53,7 @@
         <p class="dayname"><?= date_i18n('D', $date) ?></p>
         <p class="year"><?= date_i18n('Y', $date) ?></p>
       </div>
-      <h3><?= localize( $venue->post_title ) ?></h3>
+      <h3><?= $venue->post_title ?></h3>
       <div class="tools">
         <p class="time"><?= date_i18n('H:i', $date) ?></p>
         <span class="dashicons dashicons-welcome-write-blog edit-date" title="Bearbeiten"></span>
@@ -61,21 +75,23 @@
   </div>
 
   <div class="infos">
-
     <label>Spielort: </label>
     <select name="venue-selector" class="venue-select">
       <option value="">Spielort wählen</option>'
       <?php foreach($items as $item) { ?>
         <option value="<?= $item->ID ?>" selected="<?= $venue_id == $item-> ID ? 'selected': '' ?>"
-          class="<?= $venue_id == $item-> ID ? 'selected': '' ?>"><?= localize( $item->post_title ) ?></option>
+          class="<?= $venue_id == $item-> ID ? 'selected': '' ?>"><?=  $item->post_title ?></option>
       <?}?>
     </select>      
     <input type="text" class="date-selector" placeholder="Datum" value="<?= date_i18n('d.m.Y', $date) ?>" size="12" />
     <input type="text" class="time-selector" size="6" placeholder="Uhrzeit" value="<?= date_i18n('H:i', $date) ?>"/>
     <br>
-    <a class="button toggle-button <?= $premiere ? 'active-button' : '' ?>" bool="false">Premiere</a>
-    <a class="button toggle-button" bool="false">Derniere</a>
-    <a class="button toggle-button" bool="false">Abgesagt</a>
+    <a class="button toggle-button <?= $premiere ? 'active-button' : '' ?> premiere" 
+      bool=<?= $premiere ? 'true' : 'false' ?> >Premiere</a>
+    <a class="button toggle-button <?= $derniere ? 'active-button' : '' ?> derniere" 
+      bool=<?= $derniere ? 'true' : 'false' ?> >Derniere</a>
+    <a class="button toggle-button <?= $cancelled ? 'active-button' : '' ?> cancelled" 
+      bool=<?= $cancelled ? 'true' : 'false' ?> >Abgesagt</a>
     <br>
     <input type="text" value="<?= get_post_meta( $event->ID, 'lineupevent_email', TRUE ) ?>" 
       class="email" placeholder="Reservierungen Email" />
@@ -105,6 +121,8 @@
     <a class="remove-event button" href="#">Entfernen</a>
     <a class="save-event button button-primary" href="#">Speichern</a>
     <hr>
+    
+    <div class="required-values" style="display: none;" > Spielort und Datum benötigt! </div>
   </div>
 </li>
 

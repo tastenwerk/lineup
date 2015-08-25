@@ -6,9 +6,9 @@
     $date = $parent.find('.date-selector').attr('value');
     $time = $parent.find('.time-selector').attr('value');
 
-    $premiere = $parent.find('.premiere').attr('bool');
-    $derniere = $parent.find('.derniere').attr('bool');
-    $cancelled = $parent.find('.cancelled').attr('bool');
+    $premiere = $parent.find('.premiere').attr('bool') == 'true' ? 1 : '';
+    $derniere = $parent.find('.derniere').attr('bool') == 'true' ? 1 : '';
+    $cancelled = $parent.find('.cancelled').attr('bool') == 'true' ? 1 : '';
 
     $email = $parent.find('.email').attr('value');
     $phone = $parent.find('.phone').attr('value');
@@ -17,13 +17,21 @@
 
     $venue_id = $parent.find('.venue-select option.selected').val();
 
-    console.log( $venue_id );
+    if( !$venue_id ){
+      // SHOW REQUIRED VALUES
+      $parent.find('.required-values').show();
+      setTimeout(function() {
+        $parent.find('.required-values').hide();
+      }, 3000);
+      return;
+    }
+
     $label = $parent.find('.label-select option:selected');
 
     $parent.find('.current-label').css('display', 'none');
     $current_label = $parent.find('.current-label[term-id='+$label.attr('term-id')+']' );
     $current_label.css('display', 'inline-block');
-    console.log( $label.val() ? $label.val() : false );
+
     $ids = $parent.attr('id').split(';');
     if( $ids.length > 1 ){
       $entry_id = $ids[0].split('=')[1];
@@ -40,9 +48,9 @@
         venue_id: $venue_id,
         date: $date,
         time: $time,
-        premiere: $premiere == 'true' ? true : false,
-        derniere: $derniere == 'true' ? true : false,
-        cancelled: $cancelled == 'true' ? true : false,
+        premiere: $premiere,
+        derniere: $derniere,
+        cancelled: $cancelled,
         email: $email,
         phone: $phone,
         email_link: $email_link,
@@ -141,9 +149,9 @@
   $(document).on( 'click', '.toggle-button', function( event ) {
     $(this).toggleClass('active-button');
     if( $(this).attr('bool') == 'true' )
-      $(this).attr('bool', 'false' );
+      $(this).attr('bool', false );
     else      
-      $(this).attr('bool', 'true' );
+      $(this).attr('bool', true );
   })
 
 })(jQuery);
