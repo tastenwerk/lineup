@@ -2,7 +2,6 @@
 <ul id="'.$field['id'].'-repeatable" class="events"> 
 
 <hr>
-
 <?php 
   $events = get_posts( array (
     'post_type' => 'lineupevent',
@@ -23,7 +22,8 @@
     'posts_per_page' => -1
   ));
 
-  // print_r( $events );
+
+  
 
   $terms = get_terms( 'label', 'get=all');
 
@@ -45,6 +45,7 @@
           return $term->term_id;
         }, wp_get_object_terms($event->ID, 'label') );
 ?>
+
 <li id='entry=<?= the_ID(); ?>;event=<?= $event->ID ?>' class="event">
   <div class="preview">
     <div class="wrapper">
@@ -81,7 +82,7 @@
       <?php foreach($items as $item) { ?>
         <option value="<?= $item->ID ?>" selected="<?= $venue_id == $item-> ID ? 'selected': '' ?>"
           class="<?= $venue_id == $item-> ID ? 'selected': '' ?>"><?=  $item->post_title ?></option>
-      <?}?>
+      <?php } ?>
     </select>      
     <input type="text" class="date-selector" placeholder="Datum" value="<?= date_i18n('d.m.Y', $date) ?>" size="12" />
     <input type="text" class="time-selector" size="6" placeholder="Uhrzeit" value="<?= date_i18n('H:i', $date) ?>"/>
@@ -145,7 +146,7 @@
       <option value="">Spielort wählen</option>'
       <?php foreach($items as $item) { ?>
         <option value="<?= $item->ID ?>"><?= $item->post_title ?></option>
-      <?}?>
+      <?php } ?>        
     </select>      
     <input type="text" class="date-selector" placeholder="Datum" value="" size="12" />
     <input type="text" class="time-selector" size="6" placeholder="Uhrzeit" />

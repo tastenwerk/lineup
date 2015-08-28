@@ -1,4 +1,4 @@
-<? $items = get_posts( array (
+<?php $items = get_posts( array (
         'post_type' => 'lineupperson',
         'posts_per_page' => -1
     ));
