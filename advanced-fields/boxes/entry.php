@@ -58,9 +58,15 @@
           'type'  => 'text'
         ),
         array(
+          'label'=> 'Pressestimmen Vorschau',
+          'desc'  => '',
+          'id'    => $this->title.'_press_short',
+          'type'  => 'textarea'
+        ),  
+        array(
           'label'=> 'Pressestimmen',
           'desc'  => '',
-          'id'    => $this->title.'_press',
+          'id'    => $this->title.'_press_long',
           'type'  => 'textarea'
         ),
         array(
