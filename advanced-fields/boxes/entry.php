@@ -22,6 +22,12 @@
             'type'  => 'text'
             ),
         array(
+            'label'=> 'Veranstalter',
+            'desc'  => '',
+            'id'    => $this->title.'_host',
+            'type'  => 'text'
+            ),
+        array(
           'label' => 'Ensembles',
           'id'    => $this->title.'_ensemble',
           'post_type' => 'lineupensemble',
