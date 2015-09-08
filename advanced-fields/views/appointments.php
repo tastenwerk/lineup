@@ -115,7 +115,7 @@
     </select><br>
 
     <a class="remove-event button" href="#">Entfernen</a>
-    <a class="save-event button button-primary" href="#">Speichern</a>
+    <a class="save-event button button-primary" href="#">Termin speichern</a>
     <hr>
     
     <div class="required-values" style="display: none;" > Spielort und Datum benötigt! </div>
