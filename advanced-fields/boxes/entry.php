@@ -9,12 +9,6 @@
     public function init_array(){
       $this->working_dir = preg_replace( '/\/boxes$/', '', dirname( __FILE__));
       $this->fields_array = array(
-        //  array(
-        //   'label' => 'Termin(e)',
-        //   'desc'  => 'Termin(e) der geplanten Veranstaltung',
-        //   'id'    => $this->title.'_dates',
-        //   'type'  => 'appointments'
-        // ),
         array(
             'label'=> 'Untertitel',
             'desc'  => '',
@@ -22,13 +16,7 @@
             'type'  => 'text'
             ),
         array(
-            'label'=> 'Veranstalter',
-            'desc'  => '',
-            'id'    => $this->title.'_host',
-            'type'  => 'text'
-            ),
-        array(
-          'label' => 'Ensembles',
+          'label' => 'Ensemble',
           'id'    => $this->title.'_ensemble',
           'post_type' => 'lineupensemble',
           'type'  => 'post-list'

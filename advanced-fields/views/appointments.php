@@ -6,14 +6,12 @@
 
   $events = get_posts( array (
     'post_type' => 'lineupevent',
-    // 'post_title' => 'entry_id='.get_the_ID(),
     'meta_query' => array(
         array(
           'value' => get_the_ID(),
           'key' => 'lineupevent_entry_id'
         ),
     ),
-    'post_status'      => 'draft',
     'meta_key' => 'lineupevent_date',
     'orderby' => 'meta_value',
     'order' => 'ASC'
@@ -24,15 +22,10 @@
     'posts_per_page' => -1
   ));
 
-
-  
-
   $terms = get_terms( 'label', 'get=all');
 
   if( sizeof( $events ) > 0 ){ 
     foreach ($events as $index => $event ) {
-      // echo "HERE";
-      // print_r( get_post_meta( $event->ID ) );
 
       $premiere = get_post_meta( $event->ID, 'lineupevent_premiere', TRUE );
       $derniere = get_post_meta( $event->ID, 'lineupevent_derniere', TRUE );

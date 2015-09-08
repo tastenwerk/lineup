@@ -15,7 +15,7 @@
     $email_link = $parent.find('.email-link').attr('value');
     $note = $parent.find('.note').attr('value');
 
-    $venue_id = $parent.find('.venue-select option.selected').val();
+    $venue_id = $parent.find('.venue-select').val();
 
     if( !$venue_id ){
       // SHOW REQUIRED VALUES
@@ -26,10 +26,11 @@
       return;
     }
 
-    $label = $parent.find('.label-select option:selected');
+    $label = $parent.find('.label-select').val();
+    $label_id = $parent.find('.label-select option[value="'+$label+'"]').attr('term-id');
 
     $parent.find('.current-label').css('display', 'none');
-    $current_label = $parent.find('.current-label[term-id='+$label.attr('term-id')+']' );
+    $current_label = $parent.find('.current-label[term-id='+$label_id+']' );
     $current_label.css('display', 'inline-block');
 
     $ids = $parent.attr('id').split(';');
@@ -57,7 +58,7 @@
         note: $note,
         title: 'entry_id='+$entry_id,
         id: $event_id,
-        label: $label.val() ? $label.val() : false
+        label: $label ? $label : false
       },
       success: function( result ) {
         data = JSON.parse( result );
@@ -133,18 +134,27 @@
     $(this).closest('li').find('.preview').css('display', 'none');
   })
 
-   $(document).on( 'click', '.venue-select option', function( event ) {
-    $(this).closest('.venue-select').children().removeClass('selected');
-    $(this).closest('.venue-select').children().removeAttr('selected');
-    $(this).addClass('selected');
-    $(this).attr('selected', 'selected');
-  })
+  //  $(document).on( 'click', '.venue-select option', function( event ) {
+  //   console.log('HERE');
+  //   $(this).closest('.venue-select').children().removeClass('selected');
+  //   $(this).closest('.venue-select').children().removeAttr('selected');
+  //   $(this).addClass('selected');
+  //   $(this).attr('selected', 'selected');
+  // })
+
+  $("option").bind('change',function() {
+    // console.log( $(this).val() );
+    // $(this).closest('select').children().removeClass('selected');
+    // // $(this).closest('select').children().removeAttr('selected');
+    // $(this).addClass('selected');
+    // $(this).attr('selected', 'selected');
+  });
 
 
-  $(document).on( 'click', '.label-select option', function( event ) {
-    $(this).closest('.label-select').children().removeAttr('selected');
-    $(this).attr('selected', 'selected');
-  })
+  // $(document).on( 'click', '.label-select option', function( event ) {
+  //   $(this).closest('.label-select').children().removeAttr('selected');
+  //   $(this).attr('selected', 'selected');
+  // })
 
   $(document).on( 'click', '.toggle-button', function( event ) {
     $(this).toggleClass('active-button');
@@ -153,5 +163,5 @@
     else      
       $(this).attr('bool', true );
   })
-
+  
 })(jQuery);

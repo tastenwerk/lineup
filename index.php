@@ -36,8 +36,13 @@ class Plugin{
     }
     add_action( 'init', array( $this, 'add_js_and_css_files' ) );
     add_action('init', array( $this, 'add_lineup_languages') );
+    add_action( 'admin_menu', array( $this, 'custom_menu_page_removing' ) );
     new EventAjax();
     new Label();
+  }
+
+  public function custom_menu_page_removing() {
+    remove_menu_page( 'edit.php?post_type=lineupevent' );
   }
 
   public function add_lineup_languages() {
