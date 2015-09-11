@@ -17,8 +17,8 @@
           'edit' => __('Bearbeiten','lineup'),
           'edit_item' => __('Spielplaneintrag bearbeiten','lineup'),
           'new_item' => __('New HTML5 Blank Custom Post','lineup'),
-          'view' => __('View HTML5 Blank Custom Post', 'mezz' ),
-          'view_item' => __('View HTML5 Blank Custom Post', 'lineup'),
+          'view' => __('Eintrag auf Webseite anzeigen', 'mezz' ),
+          'view_item' => __('Eintrag auf Webseite anzeigen', 'lineup'),
           'search_items' => __('Search HTML5 Blank Custom Post','lineup'),
           'not_found' => __('No HTML5 Blank Custom Posts found','lineup'),
           'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash','lineup')

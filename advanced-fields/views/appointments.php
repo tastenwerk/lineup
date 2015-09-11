@@ -49,7 +49,7 @@
         <p class="dayname"><?= date_i18n('D', $date) ?></p>
         <p class="year"><?= date_i18n('Y', $date) ?></p>
       </div>
-      <h3><?= $venue->post_title ?></h3>
+      <h3><?= localize( $venue->post_title ) ?></h3>
       <div class="tools">
         <p class="time"><?= date_i18n('H:i', $date) ?></p>
         <span class="dashicons dashicons-welcome-write-blog edit-date" title="Bearbeiten"></span>

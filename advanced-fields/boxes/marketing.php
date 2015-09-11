@@ -6,6 +6,7 @@
     public $post_type = 'lineupentry';
     public $boxname = 'Marketing';
     public $context = 'side';
+    public $priority = 'low';
 
     public function init_array(){
       $this->working_dir = preg_replace( '/\/boxes$/', '', dirname( __FILE__));
@@ -22,7 +23,18 @@
           'desc'  => '',
           'id'    => $this->title.'_youtube',
           'type'  => 'checkbox'
-        )
+        ),
+        array(
+          'type' => 'sub', 
+          'label' => 'Infos Veranstalter'
+          ),
+        array(
+          'label'=> '',
+          'desc'  => '',
+          'id'    => $this->title.'_info-host',
+          'type'  => 'editor',
+          'rows'  => 15
+        ),
       );
     }
   }

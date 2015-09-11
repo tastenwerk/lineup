@@ -4,7 +4,7 @@
 
     public $title = 'lineupentry';
     public $post_type = 'lineupentry';
-    public $boxname = 'Zusätzliche Informationen';
+    public $boxname = 'Informationen zum Spielplaneintrag';
 
     public function init_array(){
       $this->working_dir = preg_replace( '/\/boxes$/', '', dirname( __FILE__));
@@ -15,6 +15,9 @@
             'id'    => $this->title.'_subtitle',
             'type'  => 'text'
             ),
+        array(
+            'type' => 'sub'
+          ),
         array(
           'label' => 'Ensemble',
           'id'    => $this->title.'_ensemble',
@@ -34,6 +37,9 @@
           'type'  => 'post-list'
         ),
         array(
+            'type' => 'sub'
+          ),
+        array(
           'label'=> 'Dauer',
           'desc'  => '',
           'id'    => $this->title.'_duration',
@@ -52,28 +58,18 @@
           'type'  => 'text'
         ),
         array(
-          'label'=> 'Pressestimmen Vorschau',
-          'desc'  => '',
-          'id'    => $this->title.'_press_short',
-          'type'  => 'textarea'
-        ),  
-        array(
           'label'=> 'Pressestimmen',
           'desc'  => '',
-          'id'    => $this->title.'_press_long',
-          'type'  => 'textarea'
-        ),
+          'id'    => $this->title.'_press',
+          'rows'  => 15,
+          'type'  => 'editor'
+        ), 
         array(
           'label'=> 'Ankünder',
           'desc'  => '',
           'id'    => $this->title.'_announcement',
-          'type'  => 'textarea'
-        ),
-        array(
-          'label'=> 'Infos Veranstalter',
-          'desc'  => '',
-          'id'    => $this->title.'_info-host',
-          'type'  => 'textarea'
+          'rows'  => 7,
+          'type'  => 'editor'
         ),
         array(
           'label'=> 'Bilder',
@@ -89,123 +85,5 @@
         )
       );
     }
-  }
-
-        // array(
-        //     'label'=> 'Pressestimmen',
-        //     'desc'  => '',
-        //     'id'    => $this->title.'textarea',
-        //     'type'  => 'textarea'
-        //     ),
-        // array(
-        //     'label'=> 'Ankünder',
-        //     'desc'  => '',
-        //     'id'    => $this->title.'textarea',
-        //     'type'  => 'textarea'
-        //     ),
-        // array(
-        //     'label'=> 'Veranstalter Infos',
-        //     'desc'  => 'Für den Veranstalter relevante Informationen',
-        //     'id'    => $this->title.'textarea',
-        //     'type'  => 'textarea'
-        //     ),
-        // array(
-        //     'label'=> 'Checkbox Input',
-        //     'desc'  => 'A description for the field.',
-        //     'id'    => $this->title.'checkbox',
-        //     'type'  => 'checkbox'
-        //     ),
-        // array (
-        //   'label' => 'Radio Group',
-        //   'desc'  => 'A description for the field.',
-        //   'id'    => $this->title.'radio',
-        //   'type'  => 'radio',
-        //   'options' => array (
-        //     'one' => array (
-        //       'label' => 'Option One',
-        //       'value' => 'one'
-        //     ),
-        //     'two' => array (
-        //       'label' => 'Option Two',
-        //       'value' => 'two'
-        //     ),
-        //     'three' => array (
-        //       'label' => 'Option Three',
-        //       'value' => 'three'
-        //     )
-        //   )
-        // ),
-        // array(
-        //   'label'=> 'Select Box',
-        //   'desc'  => 'A description for the field.',
-        //   'id'    => $this->title.'select',
-        //   'type'  => 'select',
-        //   'options' => array (
-        //     'one' => array (
-        //       'label' => 'Option One',
-        //       'value' => 'one'
-        //       ),
-        //     'two' => array (
-        //       'label' => 'Option Two',
-        //       'value' => 'two'
-        //       ),
-        //     'three' => array (
-        //       'label' => 'Option Three',
-        //       'value' => 'three'
-        //     )
-        //   )
-        // ),
-        // array (
-        //   'label' => 'Checkbox Group',
-        //   'desc'  => 'A description for the field.',
-        //   'id'    => $this->title.'checkbox_group',
-        //   'type'  => 'checkbox_group',
-        //   'options' => array (
-        //     'one' => array (
-        //       'label' => 'Option One',
-        //       'value' => 'one'
-        //       ),
-        //     'two' => array (
-        //       'label' => 'Option Two',
-        //       'value' => 'two'
-        //       ),
-        //     'three' => array (
-        //       'label' => 'Option Three',
-        //       'value' => 'three'
-        //       )
-        //     )
-        // ),
-        // array(
-        //   'label' => 'Lineup Person',
-        //   'id'    => 'category',
-        //   'type'  => 'tax_select'
-        // ),
-        // array(
-        //   'label' => 'Date',
-        //   'desc'  => 'A description for the field.',
-        //   'id'    => $this->title.'date',
-        //   'type'  => 'date'
-        // ),
-        // array(
-        //   'label' => 'Slider',
-        //   'desc'  => 'A description for the field.',
-        //   'id'    => $this->title.'slider',
-        //   'type'  => 'slider',
-        //   'min'   => '0',
-        //   'max'   => '100',
-        //   'step'  => '5'
-        // ),
-        // array(
-        //   'label'  => 'Image',
-        //   'desc'  => 'A description for the field.',
-        //   'id'    => $this->title.'image',
-        //   'type'  => 'image'
-        // ),
-        // array(
-        //   'label' => 'Termin(e)',
-        //   'desc'  => 'Termin(e) der geplanten Veranstaltung',
-        //   'id'    => $this->title.'repeatable',
-        //   'type'  => 'dates-repeater'
-        // )
-  
+  }  
 ?>
