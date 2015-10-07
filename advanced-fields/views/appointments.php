@@ -76,7 +76,7 @@
       <option value="">Spielort wählen</option>'
       <?php foreach($items as $item) { ?>
         <option value="<?= $item->ID ?>" selected="<?= $venue_id == $item-> ID ? 'selected': '' ?>"
-          class="<?= $venue_id == $item-> ID ? 'selected': '' ?>"><?=  $item->post_title ?></option>
+          class="<?= $venue_id == $item->ID ? 'selected': '' ?>"><?=  localize($item->post_title) ?></option>
       <?php } ?>
     </select>      
     <input type="text" class="date-selector" placeholder="Datum" value="<?= date_i18n('d.m.Y', $date) ?>" size="12" />

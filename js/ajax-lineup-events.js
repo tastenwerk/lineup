@@ -128,10 +128,13 @@
   })
 
   $(document).on( 'click', '.edit-date', function( event ) {
+    $parent = $(this).closest('li');
     $('li .preview').css('display', 'block');
     $('li .infos').css('display', 'none');
-    $(this).closest('li').find('.infos').css('display', 'block');
-    $(this).closest('li').find('.preview').css('display', 'none');
+    $parent.find('.infos').css('display', 'block');
+    $parent.closest('li').find('.preview').css('display', 'none');
+    $parent.find('.venue-select option').removeAttr('selected');
+    $parent.find('.venue-select option.selected').attr('selected', 'selected');
   })
 
   //  $(document).on( 'click', '.venue-select option', function( event ) {
