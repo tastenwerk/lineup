@@ -4,6 +4,18 @@ namespace Lineup;
 
 class EventAjax{
 
+  function localize( $string ){
+    //  TODO!
+    // echo qtrans_use( qtrans_getLanguage(), $string, false );
+    // echo split('[:]', $string);
+    // echo "HERE";
+    
+    if( preg_match( '/^\[:/', $string) )
+      return substr( split('\[:', $string)[1], 3);
+    else 
+      return $string;
+  }
+
   public function __construct() {
     add_action( 'wp_ajax_post_event', array( $this,'create_or_update_event') );
     add_action( 'wp_ajax_delete_event', array( $this,'delete_event') );
@@ -66,7 +78,7 @@ class EventAjax{
 
     $result = array();
     $result['id'] = $post_id;
-    $result['venue_title'] = $venue->post_title;
+    $result['venue_title'] = localize( $venue->post_title );
     $result['date'] = date_i18n("d.m", $date);
     $result['dayname'] = date_i18n("D", $date);
     $result['year'] = date_i18n("Y", $date);

@@ -72,7 +72,8 @@
         $preview.find('.time').html( data.time );
         $preview.find('.dayname').html( data.dayname );
         $preview.find('.year').html( data.year );
-        $preview.find('h3').html( $parent.find('.venue-select option.selected').html() );
+        // $preview.find('h3').html( $parent.find('.venue-select option[selected=selected]').html() );
+        $preview.find('h3').html( data['venue_title'] ) 
         // HIDE INFOS AND SHOW PREVIEW
         $parent.find('.infos').css('display', 'none');
         $parent.find('.preview').css('display', 'block');
