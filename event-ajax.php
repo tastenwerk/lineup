@@ -83,6 +83,7 @@ class EventAjax{
     $result['dayname'] = date_i18n("D", $date);
     $result['year'] = date_i18n("Y", $date);
     $result['time'] = date_i18n("H:i", $date);
+    $result['entry_id'] = get_post_meta( $post_id, 'lineupevent_entry_id', TRUE );
 
     echo json_encode( $result );
 

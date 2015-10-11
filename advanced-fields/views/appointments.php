@@ -14,7 +14,8 @@
     ),
     'meta_key' => 'lineupevent_date',
     'orderby' => 'meta_value',
-    'order' => 'ASC'
+    'order' => 'ASC',
+    'posts_per_page' => -1
   ));
 
   $items = get_posts( array (

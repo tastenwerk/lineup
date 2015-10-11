@@ -42,7 +42,7 @@ class Plugin{
   }
 
   public function custom_menu_page_removing() {
-    remove_menu_page( 'edit.php?post_type=lineupevent' );
+    // remove_menu_page( 'edit.php?post_type=lineupevent' );
   }
 
   public function add_lineup_languages() {
