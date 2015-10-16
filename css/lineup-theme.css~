@@ -1,0 +1,24 @@
+.form-table th {
+  padding-left: 20px;
+}
+
+.mini-title {
+  margin-left: -10px;
+  text-transform: uppercase;
+}
+
+#side-sortables .mini-title {
+  margin-left: 0;
+  font-weight: bold;
+  padding-top: 5px;
+  border-bottom: solid 4px white;
+}
+
+body .active-button{
+  background: #5CB85C !important;
+  color: #fff !important;
+}
+
+.chosen-select{
+  width: 200px;
+}
