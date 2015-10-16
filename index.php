@@ -72,6 +72,8 @@ class Plugin{
       wp_enqueue_script('repeatable-fields', plugin_dir_url( __FILE__ ).'js/repeatable-fields.js');
       wp_enqueue_script('jquery-minified', plugin_dir_url( __FILE__ ).'js/jquery.min.js');
       wp_enqueue_script('chosen-min', plugin_dir_url( __FILE__ ).'js/chosen.jquery.min.js');
+      wp_enqueue_script('datepicker', plugin_dir_url( __FILE__ ).'js/bootstrap-datepicker.js');
+      
     }
 
     // add ess feed

@@ -80,6 +80,7 @@
           class="<?= $venue_id == $item->ID ? 'selected': '' ?>"><?=  localize($item->post_title) ?></option>
       <?php } ?>
     </select>      
+    <span class="dashicons dashicons-calendar-alt date-select-icon" title="Termin wählen"></span>
     <input type="text" class="date-selector" placeholder="Datum" value="<?= date_i18n('d.m.Y', $date) ?>" size="12" />
     <input type="text" class="time-selector" size="6" placeholder="Uhrzeit" value="<?= date_i18n('H:i', $date) ?>"/>
     <br>

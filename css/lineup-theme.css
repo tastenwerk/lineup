@@ -22,3 +22,12 @@ body .active-button{
 .chosen-select{
   width: 200px;
 }
+
+.date-select-icon{
+  padding-top: 4px;
+  padding-left: 4px;
+}
+
+body .datepicker{
+  z-index: 1500 !important;
+}

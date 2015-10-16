@@ -3,7 +3,9 @@
   $(document).on( 'click', '.save-event', function( event ) {
     $parent = $(this).closest('li');
 
+    $parent.find('.date-selector').attr('value', $parent.find('.date-selector').val() );
     $date = $parent.find('.date-selector').attr('value');
+    console.log('the date: ', $date );
     $time = $parent.find('.time-selector').attr('value');
 
     $premiere = $parent.find('.premiere').attr('bool') == 'true' ? 1 : '';
@@ -130,13 +132,21 @@
 
   $(document).on( 'click', '.edit-date', function( event ) {
     $parent = $(this).closest('li');
-    $parent.find('.venue-select').chosen();
     $('li .preview').css('display', 'block');
     $('li .infos').css('display', 'none');
     $parent.find('.infos').css('display', 'block');
     $parent.closest('li').find('.preview').css('display', 'none');
     $parent.find('.venue-select option').removeAttr('selected');
     $parent.find('.venue-select option.selected').attr('selected', 'selected');
+    $parent.find('.venue-select').chosen();
+    $parent.find('.date-selector').datepicker({
+      language: "de-DE",
+      format: "dd.mm.yyyy",
+      onSelect: function () {
+        console.log('DOING');
+        $parent.find('.date-selector').attr('value', this.value);
+      }
+    });
   })
 
   //  $(document).on( 'click', '.venue-select option', function( event ) {
