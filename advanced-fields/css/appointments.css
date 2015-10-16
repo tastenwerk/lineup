@@ -9,6 +9,10 @@
   position: absolute;
 }
 
+body .chosen-container{
+  width: 240px !important;
+}
+
 .required-values{
   background-color: #FF6666;
   color: #fff;
@@ -80,6 +84,6 @@
   font-weight: bold;
 }
 
-.events li{
+.events > li{
   min-height: 90px;
 }

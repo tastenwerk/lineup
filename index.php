@@ -70,6 +70,8 @@ class Plugin{
       wp_enqueue_script('jquery-ui', plugin_dir_url( __FILE__ ).'js/jquery-ui.min.js');
       wp_enqueue_script('image-upload', plugin_dir_url( __FILE__ ).'js/image-upload.js');
       wp_enqueue_script('repeatable-fields', plugin_dir_url( __FILE__ ).'js/repeatable-fields.js');
+      wp_enqueue_script('jquery-minified', plugin_dir_url( __FILE__ ).'js/jquery.min.js');
+      wp_enqueue_script('chosen-min', plugin_dir_url( __FILE__ ).'js/chosen.jquery.min.js');
     }
 
     // add ess feed

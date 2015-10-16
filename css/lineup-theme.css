@@ -19,3 +19,6 @@ body .active-button{
   color: #fff !important;
 }
 
+.chosen-select{
+  width: 200px;
+}

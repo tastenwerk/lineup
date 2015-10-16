@@ -73,7 +73,7 @@
 
   <div class="infos">
     <label>Spielort: </label>
-    <select name="venue-selector" class="venue-select">
+    <select name="venue-selector" class="venue-select chosen-select">
       <option value="">Spielort wählen</option>'
       <?php foreach($items as $item) { ?>
         <option value="<?= $item->ID ?>" selected="<?= $venue_id == $item-> ID ? 'selected': '' ?>"

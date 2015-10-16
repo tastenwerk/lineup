@@ -130,6 +130,7 @@
 
   $(document).on( 'click', '.edit-date', function( event ) {
     $parent = $(this).closest('li');
+    $parent.find('.venue-select').chosen();
     $('li .preview').css('display', 'block');
     $('li .infos').css('display', 'none');
     $parent.find('.infos').css('display', 'block');
