@@ -30,6 +30,7 @@ class EventAjax{
     );
 
     $date = strtotime( $_POST['date']." ".$_POST['time'] );
+
     
     if( $_POST['id'] && $_POST['id'] !='' ){
       $post['id'] = $_POST['id'];
@@ -83,6 +84,7 @@ class EventAjax{
     $result['dayname'] = date_i18n("D", $date);
     $result['year'] = date_i18n("Y", $date);
     $result['time'] = date_i18n("H:i", $date);
+    $result['other'] = $_POST['date']." ".$_POST['time'];
     $result['entry_id'] = get_post_meta( $post_id, 'lineupevent_entry_id', TRUE );
 
     echo json_encode( $result );

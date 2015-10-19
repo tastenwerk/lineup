@@ -5,8 +5,7 @@
 
     $parent.find('.date-selector').attr('value', $parent.find('.date-selector').val() );
     $date = $parent.find('.date-selector').attr('value');
-    console.log('the date: ', $date );
-    $time = $parent.find('.time-selector').attr('value');
+    $time = $parent.find('.time-selector').val();
 
     $premiere = $parent.find('.premiere').attr('bool') == 'true' ? 1 : '';
     $derniere = $parent.find('.derniere').attr('bool') == 'true' ? 1 : '';
@@ -68,6 +67,7 @@
         $parent.attr('id', function(index, name){
           return name.replace(/;$/, ';event='+data.id );
         });
+        console.log( data );
         // UPDATE PREVIEW
         $preview = $parent.find('.preview');
         $preview.find('.date').html( data.date );
