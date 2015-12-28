@@ -18,6 +18,8 @@
 
     $venue_id = $parent.find('.venue-select').val();
 
+    console.log( 'here', $venue_id );
+
     if( !$venue_id ){
       // SHOW REQUIRED VALUES
       $parent.find('.required-values').show();
@@ -127,8 +129,29 @@
       // DISPLAY INFOS
       $li.find('.infos').css('display', 'block');
       $li.find('.preview').css('display', 'none');
+
+      $li.find('.venue-select').chosen();
+      $li.find('.date-selector').datepicker({
+        language: "de-DE",
+        format: "dd.mm.yyyy",
+        onSelect: function () {
+          $parent.find('.date-selector').attr('value', this.value);
+        }
+      });
       return false;
   })
+
+  // $(document).ready( function(){
+  //   $(document).find('.venue-select').chosen();
+  //   $(document).find('.date-selector').datepicker({
+  //     language: "de-DE",
+  //     format: "dd.mm.yyyy",
+  //     onSelect: function () {
+  //       console.log('DOING');
+  //       $parent.find('.date-selector').attr('value', this.value);
+  //     }
+  //   });
+  // });
 
   $(document).on( 'click', '.edit-date', function( event ) {
     $parent = $(this).closest('li');
