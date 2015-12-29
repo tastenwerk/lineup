@@ -114,6 +114,24 @@
   })
 
   $(document).on( 'click', '.add-event', function( event ) {
+      if( $('li.event').length == 1 ){
+        date = new Date();
+        date_string = date.getDate(), ".", date.getMonth()+1, ".", date.getFullYear();
+        $li = $('li.event .infos');
+        $li.find('.date-selector').val( date_string );
+        $li.show();
+        $li.find('.venue-select').chosen();
+        $li.find('.date-selector').datepicker({
+          language: "de-DE",
+          format: "dd.mm.yyyy",
+          onSelect: function () {
+            $parent.find('.date-selector').attr('value', this.value);
+          }
+        });
+        return;
+      }
+
+
       $li = $(this).next().find('li:first').clone(true);
       $location = $(this).next().find('li:first');
       // RESET ALL VALUES
@@ -201,5 +219,9 @@
     else      
       $(this).attr('bool', true );
   })
+
+  $(document).ready( function(){
+    $('.infos').hide();
+  });
   
 })(jQuery);
