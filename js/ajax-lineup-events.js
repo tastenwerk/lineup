@@ -116,8 +116,9 @@
   $(document).on( 'click', '.add-event', function( event ) {
       if( $('li.event').length == 1 ){
         date = new Date();
-        date_string = date.getDate(), ".", date.getMonth()+1, ".", date.getFullYear();
+        date_string = date.getDate()+ "."+( date.getMonth()+1 )+"."+date.getFullYear();
         $li = $('li.event .infos');
+        console.log( date_string );
         $li.find('.date-selector').val( date_string );
         $li.show();
         $li.find('.venue-select').chosen();
