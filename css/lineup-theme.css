@@ -31,3 +31,7 @@ body .active-button{
 body .datepicker{
   z-index: 1500 !important;
 }
+
+#appointmentsside{
+  overflow: auto;
+}

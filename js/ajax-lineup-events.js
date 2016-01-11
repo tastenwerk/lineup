@@ -18,8 +18,6 @@
 
     $venue_id = $parent.find('.venue-select').val();
 
-    console.log( 'here', $venue_id );
-
     if( !$venue_id ){
       // SHOW REQUIRED VALUES
       $parent.find('.required-values').show();
@@ -114,11 +112,11 @@
   })
 
   $(document).on( 'click', '.add-event', function( event ) {
-      if( $('li.event').length == 1 ){
+
+      if( $('li.event').length == 1 && !$('.event .preview').is(':visible') ){
         date = new Date();
         date_string = date.getDate()+ "."+( date.getMonth()+1 )+"."+date.getFullYear();
         $li = $('li.event .infos');
-        console.log( date_string );
         $li.find('.date-selector').val( date_string );
         $li.show();
         $li.find('.venue-select').chosen();
@@ -126,7 +124,7 @@
           language: "de-DE",
           format: "dd.mm.yyyy",
           onSelect: function () {
-            $parent.find('.date-selector').attr('value', this.value);
+            $li.find('.date-selector').attr('value', this.value);
           }
         });
         return;
@@ -150,11 +148,13 @@
       $li.find('.preview').css('display', 'none');
 
       $li.find('.venue-select').chosen();
+      
       $li.find('.date-selector').datepicker({
         language: "de-DE",
         format: "dd.mm.yyyy",
         onSelect: function () {
-          $parent.find('.date-selector').attr('value', this.value);
+          console.log('WH')
+          $li.find('.date-selector').attr('value', this.value);
         }
       });
       return false;
@@ -167,6 +167,19 @@
   //     format: "dd.mm.yyyy",
   //     onSelect: function () {
   //       console.log('DOING');
+  //       $parent.find('.date-selector').attr('value', this.value);
+  //     }
+  //   });
+  // });
+  
+  // $('.date-selector').on('click', function(){
+
+  //   console.log( $(this).closest('li').find('.date-selector') );
+  //   $(this).closest('li').find('.date-selector').datepicker({
+  //     language: "de-DE",
+  //     format: "dd.mm.yyyy",
+  //     onSelect: function () {
+  //       console.log('DID');
   //       $parent.find('.date-selector').attr('value', this.value);
   //     }
   //   });
@@ -185,7 +198,6 @@
       language: "de-DE",
       format: "dd.mm.yyyy",
       onSelect: function () {
-        console.log('DOING');
         $parent.find('.date-selector').attr('value', this.value);
       }
     });
