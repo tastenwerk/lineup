@@ -62,6 +62,7 @@
         label: $label ? $label : false
       },
       success: function( result ) {
+        location.reload();
         data = JSON.parse( result );
         // UPDATE ID
         $parent.attr('id', function(index, name){
@@ -149,6 +150,12 @@
 
       $li.find('.venue-select').chosen();
       
+      console.log("WHAT?", $('.datepicker').remove() );
+      console.log( $( '.date-selector' ));
+
+      $( '.date-selector' ).datepicker( "destroy" );
+      $( '.date-selector' ).removeClass("hasDatepicker").removeAttr('id');
+
       $li.find('.date-selector').datepicker({
         language: "de-DE",
         format: "dd.mm.yyyy",
