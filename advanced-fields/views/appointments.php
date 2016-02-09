@@ -14,7 +14,7 @@
     ),
     'meta_key' => 'lineupevent_date',
     'orderby' => 'meta_value',
-    'order' => 'ASC',
+    'order' => 'DESC',
     'posts_per_page' => -1
   ));
 

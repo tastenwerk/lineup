@@ -6,7 +6,7 @@
     public $post_type = 'lineupentry';
     public $boxname = 'Termine';
     public $context = 'side';
-    public $priority = 'high';
+    public $priority = 'low';
 
     public function init_array(){
       $this->working_dir = preg_replace( '/\/boxes$/', '', dirname( __FILE__));

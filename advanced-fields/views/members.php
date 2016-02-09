@@ -11,33 +11,41 @@ if ($meta) {
   foreach($meta as $row) {
 ?>
 <li>
-  <select name="<?= $field['id'] ?>[<?=$i?>][0]" id="<?= $field['id'] ?>[<?=$i?>][0]">
-    <option value=""> Auswählen </option>
-  <?php foreach($items as $item) { ?>
-    <option value="<?= $item->ID ?>" <?= $row[0] == $item->ID ? ' selected="selected"' : '' ?> >
-      <?= localize( $item->post_title ) ?>
-    </option>
-  <?php  } ?>
-  </select>
-  <input type="text" name="<?= $field['id'] ?>[<?= $i ?>][1]" id="<?= $field['id'] ?>[<?=$i?>][1]" 
-           value="<?= $row[1] ?>" size="22" placeholder="Funktion" />
-  <a class="repeatable-remove button" href="#">x</a>
+  <input type="text" name="<?= $field['id'] ?>[<?= $i ?>][0]" id="<?= $field['id'] ?>[<?=$i?>][0]" 
+           value="<?= $row[0] ?>" size="18" placeholder="Funktion" />
+  <a class="repeatable-remove button" >x</a>
+  <a class="add-member button" >+</a>
+
+  <?php for( $counter = 1; $counter < sizeof($row); $counter++ ) { ?>
+
+    <select name="<?= $field['id'] ?>[<?=$i?>][<?= $counter ?>]" id="<?= $field['id'] ?>[<?=$i?>][<?= $counter ?>]" class="member-select">
+      <option value=""> Auswählen </option>
+    <?php foreach($items as $item) { ?>
+      <option value="<?= $item->ID ?>" <?= $row[$counter] == $item->ID ? ' selected="selected"' : '' ?> >
+        <?= localize( $item->post_title ) ?>
+      </option>
+    <?php  } ?>
+    </select>
+
+  <?php } ?>
+
 </li>
 <?php $i++;
     }
   } else { ?>
 <li>
-  <select name="<?= $field['id'] ?>[<?=$i?>][0]" id="<?= $field['id'] ?>[<?=$i?>][0]">
+  <input type="text" name="<?= $field['id'] ?>[<?= $i ?>][0]" id="<?= $field['id'] ?>[<?=$i?>][0]" 
+           value="" size="18" placeholder="Funktion" />
+  <a class="repeatable-remove button" href="#">x</a>
+  <a class="repeatable-add button" href="#">+</a>
+  <select name="<?= $field['id'] ?>[<?=$i?>][1]" id="<?= $field['id'] ?>[<?=$i?>][1]">
     <option value=""> Auswählen </option>
      <?php foreach($items as $item) { ?>
-    <option value="<?= $item->ID ?>" <?= $row[0] == $item->ID ? ' selected="selected"' : '' ?> >
+    <option value="<?= $item->ID ?>" <?= $row[1] == $item->ID ? ' selected="selected"' : '' ?> >
       <?= $item->post_title ?>
     </option>
   <?php  } ?>
   </select>
-  <input type="text" name="<?= $field['id'] ?>[<?= $i ?>][1]" id="<?= $field['id'] ?>[<?=$i?>][1]" 
-           value="" size="22" placeholder="Funktion" />
-  <a class="repeatable-remove button" href="#">x</a>
 </li>
 <?php } ?>
 </ul>

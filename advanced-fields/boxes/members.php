@@ -6,6 +6,7 @@
     public $post_type = 'lineupentry';
     public $boxname = 'Mitwirkende';
     public $context = 'side';
+    public $priority = 'low';
 
     public function init_array(){
       $this->working_dir = preg_replace( '/\/boxes$/', '', dirname( __FILE__));
