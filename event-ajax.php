@@ -49,6 +49,7 @@ class EventAjax{
       update_post_meta( $post_id, 'lineupevent_email', $_POST['email'] ); 
       update_post_meta( $post_id, 'lineupevent_phone', $_POST['phone'] ); 
       update_post_meta( $post_id, 'lineupevent_email-link', $_POST['email_link'] ); 
+      update_post_meta( $post_id, 'lineupevent_note', $_POST['note'] ); 
 
     } else{
       $post_id = wp_insert_post( $post );
@@ -65,6 +66,7 @@ class EventAjax{
       add_post_meta( $post_id, 'lineupevent_email', $_POST['email'] ); 
       add_post_meta( $post_id, 'lineupevent_phone', $_POST['phone'] ); 
       add_post_meta( $post_id, 'lineupevent_email-link', $_POST['email_link'] ); 
+      add_post_meta( $post_id, 'lineupevent_note', $_POST['note'] ); 
     
     }
 

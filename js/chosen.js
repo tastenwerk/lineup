@@ -1,6 +1,6 @@
 (function($) {
   $( document ).ready(function() {
-    console.log('here');
     $(".chosen-select").chosen();
+    console.log( "TER");
   })
 });

@@ -1,5 +1,10 @@
 (function($) {
 
+  // $( document ).ready(function() {
+  //   $("#membersside .chosen-select").chosen();
+  //   console.log( "TER");
+  // })
+
   $(document).on( 'click', '.save-event', function( event ) {
     $parent = $(this).closest('li');
 
@@ -11,10 +16,10 @@
     $derniere = $parent.find('.derniere').attr('bool') == 'true' ? 1 : '';
     $cancelled = $parent.find('.cancelled').attr('bool') == 'true' ? 1 : '';
 
-    $email = $parent.find('.email').attr('value');
-    $phone = $parent.find('.phone').attr('value');
-    $email_link = $parent.find('.email-link').attr('value');
-    $note = $parent.find('.note').attr('value');
+    $email = $parent.find('.email').val();
+    $phone = $parent.find('.phone').val();
+    $email_link = $parent.find('.email-link').val();
+    $note = $parent.find('.note').val();
 
     $venue_id = $parent.find('.venue-select').val();
 
@@ -42,6 +47,7 @@
       $entry_id = $ids[0].split('=')[1];
       $event_id = '';      
     } 
+
     $.ajax({
       url: ajaxpagination.ajaxurl,
       type: 'post',
@@ -68,7 +74,6 @@
         $parent.attr('id', function(index, name){
           return name.replace(/;$/, ';event='+data.id );
         });
-        console.log( data );
         // UPDATE PREVIEW
         $preview = $parent.find('.preview');
         $preview.find('.date').html( data.date );
@@ -199,7 +204,7 @@
     $parent.find('.infos').css('display', 'block');
     $parent.closest('li').find('.preview').css('display', 'none');
     $parent.find('.venue-select option').removeAttr('selected');
-    $parent.find('.venue-select option.selected').attr('selected', 'selected');
+    $parent.find('.venue-select').val( $parent.find('.venue-select option.selected').val() );
     $parent.find('.venue-select').chosen();
     $parent.find('.date-selector').datepicker({
       language: "de-DE",
