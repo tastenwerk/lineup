@@ -36,6 +36,32 @@ jQuery(function($) {
     });
   });  
 
+  $(document).on( 'click', '.available-label .color', function( event ) {
+    $parent = $(this).closest('li');
+    $.ajax({
+      url: ajaxpagination.ajaxurl,
+      type: 'post',
+      data: {
+        action: 'toggle_label',
+        post_id: $('.current-labels').attr('post-id'),       
+        term_name: $parent.attr('term-name'),
+        term_id: $parent.attr('term-id')
+      },
+      success: function( result ) {
+        $cur_label = $('.label-taxonomys .current-label[term-id='+$parent.attr('term-id')+']' );
+        if( $cur_label.css('display') == 'none' )
+          $cur_label.css('display', 'inline-block');
+        else
+          $cur_label.css('display', 'none');
+        if( $('.label-taxonomys .current-label:visible').length == 0 )
+          $('.label-taxonomys .current-labels p').css('display', 'block');
+        else
+          $('.label-taxonomys .current-labels p').css('display', 'none');
+
+      }
+    });
+  });  
+
   $(document).on( 'click', '.create-label', function( event ) {
     $.ajax({
       url: ajaxpagination.ajaxurl,
