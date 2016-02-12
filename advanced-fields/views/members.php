@@ -18,6 +18,7 @@ if ($meta) {
 
   <?php for( $counter = 1; $counter < sizeof($row); $counter++ ) { ?>
 
+  <div class="select-repeater">
     <select name="<?= $field['id'] ?>[<?=$i?>][<?= $counter ?>]" id="<?= $field['id'] ?>[<?=$i?>][<?= $counter ?>]" class="chosen-select member-select">
       <option value=""> Auswählen </option>
     <?php foreach($items as $item) { ?>
@@ -26,7 +27,7 @@ if ($meta) {
       </option>
     <?php  } ?>
     </select>
-
+  </div>
   <?php } ?>
 
 </li>
@@ -38,14 +39,16 @@ if ($meta) {
            value="" size="18" placeholder="Funktion" />
   <a class="repeatable-remove button" href="#">x</a>
   <a class="repeatable-add button" href="#">+</a>
-  <select name="<?= $field['id'] ?>[<?=$i?>][1]" id="<?= $field['id'] ?>[<?=$i?>][1]" class="chosen-select member-select">
-    <option value=""> Auswählen </option>
-     <?php foreach($items as $item) { ?>
-    <option value="<?= $item->ID ?>" <?= $row[1] == $item->ID ? ' selected="selected"' : '' ?> >
-      <?= $item->post_title ?>
-    </option>
-  <?php  } ?>
-  </select>
+  <div class="select-repeater">
+    <select name="<?= $field['id'] ?>[<?=$i?>][1]" id="<?= $field['id'] ?>[<?=$i?>][1]" class="chosen-select member-select">
+      <option value=""> Auswählen </option>
+       <?php foreach($items as $item) { ?>
+      <option value="<?= $item->ID ?>" <?= $row[1] == $item->ID ? ' selected="selected"' : '' ?> >
+        <?= $item->post_title ?>
+      </option>
+    <?php  } ?>
+    </select>
+  </div>
 </li>
 <?php } ?>
 </ul>

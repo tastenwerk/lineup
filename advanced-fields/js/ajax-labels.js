@@ -129,37 +129,4 @@ jQuery(function($) {
     $('#label-preview').html( $('.label-name').val() );
   });
 
-  $('.add-member ').click(function() {
-    console.log( $(this).parent().find('.member-select') );
-    $anc =  $(this).parent().find('.member-select')
-    $clone = $anc.clone(true);
-    $clone.val('');
-    $clone.attr('name', function(index, name) {
-      return name.replace(/\]\[(\d+)/, function(fullMatch, n) {
-        console.log('HERE; ', n);
-        return '][' + n.replace(/(\d+)/, function(fullMatch, i) {
-          return Number(i) + 1;
-        });
-      });
-    })
-    $clone.attr('id', function(index, name) {
-      return name.replace(/\]\[(\d+)/, function(fullMatch, n) {
-        console.log('HERE; ', n);
-        return '][' + n.replace(/(\d+)/, function(fullMatch, i) {
-          return Number(i) + 1;
-        });
-      });
-    })
-    $clone.insertAfter( $anc );
-    // field = jQuery(this).closest('td').find('.custom_repeatable li:last').clone(true);
-    // fieldLocation = jQuery(this).closest('td').find('.custom_repeatable li:last');
-    // jQuery('input', field).val('').attr('name', function(index, name) {
-    //   return name.replace(/(\d+)/, function(fullMatch, n) {
-    //     return Number(n) + 1;
-    //   });
-    // })
-    // field.insertAfter(fieldLocation, jQuery(this).closest('td'))
-    // return false;
-  });
-
 });

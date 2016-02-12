@@ -1,9 +1,55 @@
 (function($) {
 
-  // $( document ).ready(function() {
-  //   $("#membersside .chosen-select").chosen();
-  //   console.log( "TER");
-  // })
+  $( document ).ready(function() {
+    $("#membersside .chosen-select").chosen();
+    $('.add-member ').click(function() {
+      $parent = $(this).parent()
+      $anc =  $(this).parent().find('.select-repeater:last')
+      $clone = $anc.clone(true);
+      $select = $clone.find('select');
+      $chosen = $clone.find('.chosen-container');
+      $select.val('');
+      $select.attr('name', function(index, name) {
+        return name.replace(/\]\[(\d+)/, function(fullMatch, n) {
+          return '][' + n.replace(/(\d+)/, function(fullMatch, i) {
+            return Number(i) + 1;
+          });
+        });
+      })
+      $select.attr('id', function(index, name) {
+        return name.replace(/\]\[(\d+)/, function(fullMatch, n) {
+          return '][' + n.replace(/(\d+)/, function(fullMatch, i) {
+            return Number(i) + 1;
+          });
+        });
+      })
+
+      $chosen.attr('id', function(index, name) {
+        return name.replace(/__\d__/, function(fullMatch, n) {
+            num = Number(fullMatch.replace(/__/g, '')) + 1;
+            return "__" + num + "__" ;
+        });
+      })
+
+      $chosen.hide()
+      $select.show()
+      $select.chosen(); 
+      
+      console.log("HERE", $select, $chosen );
+      $clone.insertAfter( $anc );
+      // $parent.find('.member-select:last').show();
+      // $anc.chosen();
+      // field = jQuery(this).closest('td').find('.custom_repeatable li:last').clone(true);
+      // fieldLocation = jQuery(this).closest('td').find('.custom_repeatable li:last');
+      // jQuery('input', field).val('').attr('name', function(index, name) {
+      //   return name.replace(/(\d+)/, function(fullMatch, n) {
+      //     return Number(n) + 1;
+      //   });
+      // })
+      // field.insertAfter(fieldLocation, jQuery(this).closest('td'))
+      // return false;
+    });
+  })
 
   $(document).on( 'click', '.save-event', function( event ) {
     $parent = $(this).closest('li');
