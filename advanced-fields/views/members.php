@@ -3,32 +3,39 @@
         'posts_per_page' => -1
     ));
 ?>
-<a class="repeatable-add-side-select button" href="#">Eintrag hinzufügen</a>
-<ul id="<?= $field['id'] ?>-repeatable" class="custom_repeatable">
+<a class="repeatable-add-members button" >Eintrag hinzufügen</a>
+<ul id="<?= $field['id'] ?>-repeatable" class="custom_repeatable member-repeatable">
 <?php
 $i = 0;
 if ($meta) {
   foreach($meta as $row) {
 ?>
 <li>
-  <input type="text" name="<?= $field['id'] ?>[<?= $i ?>][0]" id="<?= $field['id'] ?>[<?=$i?>][0]" 
-           value="<?= $row[0] ?>" size="18" placeholder="Funktion" />
-  <a class="repeatable-remove button" >x</a>
-  <a class="add-member button" >+</a>
 
-  <?php for( $counter = 1; $counter < sizeof($row); $counter++ ) { ?>
+  <!-- <span class="repeatable-remove dashicons dashicons-dismiss"></span> -->
+  <input type="text" name="<?= $field['id'] ?>[<?= $i ?>][0]" id="<?= $field['id'] ?>[<?=$i?>][0]" 
+    class="member-function" value="<?= $row[0] ?>" size="21" placeholder="Funktion" />
+  <span class="add-member dashicons dashicons-plus-alt"></span>
 
   <div class="select-repeater">
-    <select name="<?= $field['id'] ?>[<?=$i?>][<?= $counter ?>]" id="<?= $field['id'] ?>[<?=$i?>][<?= $counter ?>]" class="chosen-select member-select">
+    <select  class="chosen-select member-select">
       <option value=""> Auswählen </option>
     <?php foreach($items as $item) { ?>
-      <option value="<?= $item->ID ?>" <?= $row[$counter] == $item->ID ? ' selected="selected"' : '' ?> >
+      <option value="<?= $item->ID ?>" >
         <?= localize( $item->post_title ) ?>
       </option>
     <?php  } ?>
     </select>
   </div>
-  <?php } ?>
+
+  <ul class="members-list">
+  <?php for( $counter = 1; $counter < sizeof($row); $counter++ ) { ?> 
+    <li>
+      <input type='text' class="member-hide" name="<?= $field['id'] ?>[<?=$i?>][<?= $counter ?>]" id="<?= $field['id'] ?>[<?=$i?>][<?= $counter ?>]" value=<?= $row[$counter] ?> >
+      <span class="member-name"><?= localize( get_post( $row[$counter] )->post_title ) ?></span><span class="dashicons dashicons-no remove-member"></span>
+    </li>
+  <?php } ?> 
+  </ul>
 
 </li>
 <?php $i++;

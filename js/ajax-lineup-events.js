@@ -1,53 +1,83 @@
 (function($) {
 
   $( document ).ready(function() {
+
     $("#membersside .chosen-select").chosen();
-    $('.add-member ').click(function() {
-      $parent = $(this).parent()
-      $anc =  $(this).parent().find('.select-repeater:last')
-      $clone = $anc.clone(true);
-      $select = $clone.find('select');
-      $chosen = $clone.find('.chosen-container');
-      $select.val('');
-      $select.attr('name', function(index, name) {
+
+    function replace_name_and_id_first( $clone ){      
+      $clone.attr('name', function(index, name) {
+        return name.replace(/(\d+)\]\[/, function(fullMatch, n) {
+          return n.replace(/(\d+)/, function(fullMatch, i) {
+            return Number(i) + 1;
+          }) + '][' ;
+        });
+      });
+      $clone.attr('id', function(index, name) {
+        return name.replace(/(\d+)\]\[/, function(fullMatch, n) {
+          return n.replace(/(\d+)/, function(fullMatch, i) {
+            return Number(i) + 1;
+          })+'][';
+        });
+      });
+    }
+
+    function replace_name_and_id_second( $clone ){      
+      $clone.attr('name', function(index, name) {
         return name.replace(/\]\[(\d+)/, function(fullMatch, n) {
           return '][' + n.replace(/(\d+)/, function(fullMatch, i) {
             return Number(i) + 1;
           });
         });
-      })
-      $select.attr('id', function(index, name) {
+      });
+      $clone.attr('id', function(index, name) {
         return name.replace(/\]\[(\d+)/, function(fullMatch, n) {
           return '][' + n.replace(/(\d+)/, function(fullMatch, i) {
             return Number(i) + 1;
           });
         });
-      })
+      });
+    }
 
-      $chosen.attr('id', function(index, name) {
-        return name.replace(/__\d__/, function(fullMatch, n) {
-            num = Number(fullMatch.replace(/__/g, '')) + 1;
-            return "__" + num + "__" ;
-        });
-      })
-
-      $chosen.hide()
-      $select.show()
-      $select.chosen(); 
-      
-      console.log("HERE", $select, $chosen );
+    $(document).on('click', '.repeatable-add-members', function(){
+      $anc = $('.member-repeatable > li:last');
+      $clone = $anc.clone();
+      $clone.find('.member-function').val('');
+      $clone.find('.member-function').attr('placeholder', 'Eingeben und speichern');
+      $clone.find('.members-list li').remove();
+      $clone.find('.select-repeater').remove();
+      replace_name_and_id_first( $clone.find('.member-function') );
       $clone.insertAfter( $anc );
-      // $parent.find('.member-select:last').show();
-      // $anc.chosen();
-      // field = jQuery(this).closest('td').find('.custom_repeatable li:last').clone(true);
-      // fieldLocation = jQuery(this).closest('td').find('.custom_repeatable li:last');
-      // jQuery('input', field).val('').attr('name', function(index, name) {
-      //   return name.replace(/(\d+)/, function(fullMatch, n) {
-      //     return Number(n) + 1;
-      //   });
-      // })
-      // field.insertAfter(fieldLocation, jQuery(this).closest('td'))
-      // return false;
+    });
+
+    $(document).on('click', '.remove-member', function(){
+      $parent = $(this).parent();
+      $parent.remove()
+    });
+
+     $(document).on('click', '.add-member ', function() {
+      $parent = $(this).parent()
+      text = $parent.find('.member-select option:selected').text()
+      val = $parent.find('.member-select').val()
+      if( val ){
+        if( $parent.find('.members-list li').length == 0  ){
+          html =  '<input type="text" class="member-hide"><span class="member-name"></span><span class="dashicons dashicons-no remove-member"></span>';
+          $li = $('<li>').html( html );
+          $input = $li.find('input');
+          $input.attr('name', $parent.find('input').attr('name') );          
+          $input.attr('id', $parent.find('input').attr('id') );
+          replace_name_and_id_second( $input );
+          $li.find('input').val( val );
+          $li.find('.member-name').html( text );
+          $parent.find('.members-list').append( $li );
+        } else{
+          $anc = $parent.find('.members-list li:last');
+          $clone = $anc.clone();
+          $clone.find('input').val( val );
+          $clone.find('.member-name').html( text );
+          replace_name_and_id_second( $clone.find('input') );
+          $clone.insertAfter( $anc );
+        }
+      }
     });
   })
 

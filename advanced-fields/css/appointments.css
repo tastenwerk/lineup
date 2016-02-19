@@ -91,3 +91,49 @@ body .chosen-container{
 .wrapper h3{
   margin-bottom: 5px;
 }
+
+.member-hide{
+  display: none;
+}
+
+.members-list li{
+  border: 1px solid #DDD;
+  padding: 5px 10px;
+  font-size: 15px;
+  margin-left: 20px;
+  margin-right: 6px;
+}
+
+.members-list .dashicons{
+  float: right;
+}
+
+.select-repeater{
+  margin-left: 6px;
+  margin-bottom: 10px;
+}
+
+#lineupentry_members-repeatable > li{
+  border: 1px solid #EEE;
+  padding-top: 0px;
+}
+
+.member-function{
+  margin: 5px;
+}
+
+#lineupentry_members-repeatable .dashicons-plus-alt{
+  font-size: 30px;
+  margin-top: 3px;
+}
+
+#lineupentry_members-repeatable .dashicons-dismiss{
+  font-size: 24px;
+  color: #E45A5A;
+  padding: 6px 0px 0 7px;
+}
+
+#lineupentry_members-repeatable .dashicons:hover{
+  cursor: pointer;
+}
+
