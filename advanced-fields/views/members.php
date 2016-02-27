@@ -15,7 +15,7 @@ if ($meta) {
 
   <!-- <span class="repeatable-remove dashicons dashicons-dismiss"></span> -->
   <input type="text" name="<?= $field['id'] ?>[<?= $i ?>][0]" id="<?= $field['id'] ?>[<?=$i?>][0]" 
-    class="member-function" value="<?= $row[0] ?>" size="21" placeholder="Funktion" />
+    class="member-function" value="<?= $row[0] ?>" size="18" placeholder="Funktion" />
   <span class="add-member dashicons dashicons-plus-alt"></span>
   <span class="dashicons dashicons-trash remove-member" title="Löschen"></span>
 
