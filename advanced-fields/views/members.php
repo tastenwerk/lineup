@@ -4,6 +4,7 @@
     ));
 ?>
 <a class="repeatable-add-members button" >Eintrag hinzufügen</a>
+<p>1. Funktion eingeben <br> 2. Person suchen <br> 3. Plus drücken </p>
 <ul id="<?= $field['id'] ?>-repeatable" class="custom_repeatable member-repeatable">
 <?php
 $i = 0;
@@ -16,6 +17,7 @@ if ($meta) {
   <input type="text" name="<?= $field['id'] ?>[<?= $i ?>][0]" id="<?= $field['id'] ?>[<?=$i?>][0]" 
     class="member-function" value="<?= $row[0] ?>" size="21" placeholder="Funktion" />
   <span class="add-member dashicons dashicons-plus-alt"></span>
+  <span class="dashicons dashicons-trash remove-member" title="Löschen"></span>
 
   <div class="select-repeater">
     <select  class="chosen-select member-select">
